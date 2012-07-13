@@ -1,0 +1,1864 @@
+options {
+  parserPackage="JetBrains.ReSharper.Psi.FSharp.Parsing";
+  "objectClassFQName"="System.Object";
+  
+  //CSharp    
+   "createTokenElementMethodFQName"="JetBrains.ReSharper.Psi.CSharp.Impl.Factory.createTokenElement";
+  
+  //FSharp
+  "tokenElementClassFQName"="JetBrains.ReSharper.Psi.ITokenNode";   
+  "psiElementVisitorClassFQName"="JetBrains.ReSharper.Psi.FSharp.TreeNodeVisitor";
+  customInterfacePackage="JetBrains.ReSharper.Psi.FSharp.Tree";
+  publicChildRolePrefix="FSHARP"; //if role name starts with that prefix, it MUST BE declared in  publicChildRoleClass class
+  publicChildRoleClass="JetBrains.ReSharper.Psi.FSharp.Impl.Tree.FSharpChildRole";
+
+  //standalone
+  
+  "treeElementClassFQName"="JetBrains.ReSharper.Psi.ExtensionsAPI.Tree.TreeElement";
+  "leafElementClassFQName"="JetBrains.ReSharper.Psi.Impl.Tree.FSharpLeafElement";
+  psiStubsBaseClass="JetBrains.ReSharper.Psi.FSharp.Impl.Tree.FSharpCompositeElement";
+  "visitMethodPrefix"="Visit";
+  "lexerClassName"="JetBrains.ReSharper.Lexing.ILexer";
+  "parserGenRuntimePackageName"="Impl.Parsing";
+
+  //shared
+  "psiElementClassFQName"="JetBrains.ReSharper.Psi.FSharp.Tree.IFSharpTreeNode";
+  "semanticPsiElementClassFQName"="JetBrains.ReSharper.Psi.FSharp.Tree.IFSharpElement";
+  "sourceInterfaceNameSuffix"="Node";
+  "tokenElementClassFQName"="JetBrains.ReSharper.Psi.ITokenNode";
+
+  //bugs
+  "compositeElementClassFQName"="aaaaaaaaaaaaaaaaaaaaJetBrains.ReSharper.Psi.Impl.Tree.CompositeElement";  
+  "unexpectedTokenClassFQName"="aaaaaaaaaaaaaaaaaaaaaParsing.UnexpectedToken";
+  "syntaxErrorClassFQName"="aaaaaaaaaaaaaaaaaaaaaaaaaParsing.SyntaxError";
+
+
+  //settings
+  parserPackage="JetBrains.ReSharper.Psi.FSharp";            //Parsing. is needed
+  parserClassName="FSharpParserGenerated";
+  psiInterfacePackageName="JetBrains.ReSharper.Psi.FSharp";
+  psiStubsPackageName="JetBrains.ReSharper.Psi.FSharp.Impl.Tree";   
+  tokenClassName="JetBrains.ReSharper.Psi.FSharp.Impl.Tree.FSharpToken";
+  customImplPackage="JetBrains.ReSharper.Psi.FSharp.Impl.Tree";
+
+  "tokenTypeClassFQName"="JetBrains.ReSharper.Psi.FSharp.Impl.Lexing.FSharpTokenType";
+
+
+
+  //prefixes
+  tokenTypePrefix="";
+  elementTypePrefix="";
+  "psiClassesPrefix"="";
+  "interfaceNamePrefix"="I";
+  "customImplSuffix"="";
+
+  //paths
+  parserTargetSubdir="parser/";
+  psiInterfacesTargetSubdir="Psi/";
+  psiStubsTargetSubdir="Psi/Impl";
+  testTargetSubdir="Psi/Tests/";
+
+  //visitors    
+  semanticVisitorClassName="ElementVisitor";
+  visitorSuperClassName="JetBrains.ReSharper.Psi.FSharp.Impl.Tree.FSharpTreeNodeVisitorBase";
+  hierarchicalSemanticVisitorClassName="HierarchicalElementVisitor";
+  visitorClassName="TreeNodeVisitor";
+
+
+  disableReflection;
+  separateHierarchies;
+
+  tokenBitsetThreshold=4;
+  //suppressVisitor;
+
+}
+
+
+//A.1 Basics
+ 
+//A.1.0 Numbers
+
+private intConstant{ROLE, getter}
+ :
+    INT_LITERAL<@ROLE, @getter> 
+  |
+    INT8_LITERAL<@ROLE, @getter>
+  | 
+    UINT8_LITERAL<@ROLE, @getter>
+  |
+    INT16_LITERAL<@ROLE, @getter>
+  |
+    UINT16_LITERAL<@ROLE, @getter>
+  | 
+    INT32_LITERAL<@ROLE, @getter>
+  |
+    UINT32_LITERAL<@ROLE, @getter>
+  |
+    NATIVEINT_LITERAL<@ROLE, @getter>
+  |
+    UNATIVEINT_LITERAL<@ROLE, @getter>
+  | 
+    INT64_LITERAL<@ROLE, @getter>
+  |
+    UINT64_LITERAL<@ROLE, @getter>
+;
+
+private floatConstant{ROLE, getter}
+ :
+     FLOAT32_LITERAL<@ROLE, @getter>
+   |
+     FLOAT64_LITERAL<@ROLE, @getter>
+ ; 
+
+//A.1.1 Naming Objects
+
+abstract identifier options{
+	interfaceName = "JetBrains.ReSharper.Psi.FSharp.IIdentifierNode";
+} 
+ : 
+  IDENTIFIER
+;
+
+//errorhandling ???
+ interface valueName options{ customInterface;}
+ :
+	identifier
+ |
+	operatorName
+;
+
+operatorName options { customImpl; customInterface;}
+ :
+	!(#lparenth: KEYWORD_LPARENTH_OP)
+	operatorNameAux[lparenth]
+;
+
+private operatorNameAux[KEYWORD_LPARENTH_OP lparenth] options{ }
+ :
+	&lparenth<FSHARP_LPARENTH, LParenth> 
+	overloadableOperator{OPERATOR, Operator}
+    KEYWORD_RPARENTH_OP<FSHARP_RPARENTH, RParenth>  	
+;
+
+//errorhandling ???
+qualifiedIdentifierName[qualifiedIdentifierName qualifier] options{hasSemanticInterface; customInterface; customImpl; customParseFunction;}
+ :
+    (	&qualifier<QUALIFIER, Qualifier, type = "semantic">	
+		KEYWORD_DOT_OP<FSHARP_DOT, Dot>
+	)?
+		identifier<NAME, IdentifierName>	
+    
+;
+
+private qualifiedIdentifierNameFull{ROLE, getter} options{ }
+ :
+	!(#id:identifier)
+	qualifiedIdentifierName<@ROLE, @getter, type = "semantic">[id]
+ ;
+
+//errorhandling ???
+qualifiedValueName options{hasSemanticInterface; customInterface; customImpl; customParseFunction;}
+ :
+    (	qualifiedIdentifierNameFull{QUALIFIER, Qualifier}
+		KEYWORD_DOT_OP<FSHARP_DOT, Dot>)?		
+	valueName<NAME, ValueName>
+	
+;
+
+fieldReference options {hasSemanticInterface; customImpl; customInterface;
+     stubBase = "JetBrains.ReSharper.Psi.FSharp.Impl.Tree.ReferenceBase";}
+ :
+    (
+      moduleReference<QUALIFIER, Qualifier, type = "semantic">
+      KEYWORD_DOT_OP<FSHARP_DOT, Dot>
+    )?
+    identifier<REFERENCE_NAME, ReferenceName>	
+;
+
+//A.1.2 Empty Array and Unit
+emptyList options {}
+:
+	KEYWORD_LBRACKET_OP<FSHARP_LBRACKET, LBracket>
+    KEYWORD_RBRACKET_OP<FSHARP_RBRACKET, RBracket>
+;
+
+unit options {}
+:
+	KEYWORD_LPARENTH_OP<FSHARP_LPARENTH, LParenth>  
+    KEYWORD_RPARENTH_OP<FSHARP_RPARENTH, RParenth>  
+;
+
+emptyArray options {}
+:
+	KEYWORD_LBRACKETOR_OP<FSHARP_ARRAY, LArrayBracket>
+    KEYWORD_ORRBRACKET_OP<FSHARP_ARRAY, RArray>          
+;
+
+//A.1.3 Constants
+
+private constantValue{ROLE, getter}
+ :
+	 intConstant{@ROLE, @getter}
+  |
+     floatConstant{@ROLE, @getter}
+  |  
+     CHARACTER_LITERAL<@ROLE, @getter>
+  |
+     STRING_LITERAL<@ROLE, @getter>
+  |
+     KEYWORD_FALSE<@ROLE, @getter>
+  |
+     KEYWORD_TRUE<@ROLE, @getter>
+  |
+     KEYWORD_NULL<@ROLE, @getter>
+  |
+     emptyList<@ROLE, @getter>
+  |
+     unit<@ROLE, @getter>  
+  |
+     emptyArray<@ROLE, @getter>
+ ;
+
+//A.1.4 Operators
+	  
+private infixSymbol{ROLE, getter}
+ :	
+	OPERATOR_EQ<@ROLE, @getter> 
+ | 
+	OPERATOR_LT<@ROLE, @getter> 
+ |	
+	OPERATOR_GT<@ROLE, @getter> 
+ |
+	OPERATOR_AT<@ROLE, @getter> 
+ | 
+	OPERATOR_XOR<@ROLE, @getter> 
+ |
+	OPERATOR_OR<@ROLE, @getter> 
+ |
+	OPERATOR_AND<@ROLE, @getter> 
+ | 
+	OPERATOR_PLUS<@ROLE, @getter> 
+ |
+ 	OPERATOR_MINUS<@ROLE, @getter> 
+ |
+	OPERATOR_ASTERISK<@ROLE, @getter> 
+ | 
+	OPERATOR_DIV<@ROLE, @getter> 
+ |	
+	OPERATOR_DOLLAR<@ROLE, @getter> 
+ |
+	OPERATOR_PERC<@ROLE, @getter> 
+;	
+	
+private prefixSymbol{ROLE, getter}
+ :
+	OPERATOR_EXCL<@ROLE, @getter> 
+ |
+	OPERATOR_QUEST<@ROLE, @getter> 
+ |
+	OPERATOR_TILDE<@ROLE, @getter> 
+;
+ 
+private overloadableOperator{ROLE, getter}
+ :
+	infixSymbol{@ROLE, @getter}
+ |
+	prefixSymbol{@ROLE, @getter}
+ |
+	KEYWORD_NOTEQ_OP<@ROLE, @getter> 
+ |
+	KEYWORD_PLUS_OP<@ROLE, @getter> 
+ |
+	KEYWORD_MINUS_OP<@ROLE, @getter> 
+ |
+	KEYWORD_MINUSDOT_OP<@ROLE, @getter> 
+ |
+	KEYWORD_ASTERISK_OP<@ROLE, @getter> 
+ |
+	KEYWORD_EQ_OP<@ROLE, @getter> 
+ |
+	KEYWORD_LT_OP<@ROLE, @getter> 
+ |
+	KEYWORD_GT_OP<@ROLE, @getter> 
+ |
+	KEYWORD_AND_OP<@ROLE, @getter> 
+ |
+	KEYWORD_ANDAND_OP<@ROLE, @getter> 
+ |
+	KEYWORD_OR<@ROLE, @getter> 
+ |
+	KEYWORD_OROR_OP<@ROLE, @getter> 
+ |
+	KEYWORD_COLONEQ_OP<@ROLE, @getter> 
+ |
+	KEYWORD_MOD<@ROLE, @getter> 
+ |
+	KEYWORD_LAND<@ROLE, @getter> 
+ |
+	KEYWORD_LOR<@ROLE, @getter> 
+ |
+	KEYWORD_LXOR<@ROLE, @getter> 
+ |
+	KEYWORD_LSL<@ROLE, @getter> 
+ |
+	KEYWORD_LSR<@ROLE, @getter> 
+ |
+	KEYWORD_ASR<@ROLE, @getter> 
+;
+
+// A.2 
+// A.2.1 The toplevel system
+
+errorhandling FSharpFile
+options
+{
+  hasSemanticInterface;
+  customInterface;
+  customImpl;
+  stubBase = "FSharpFileNode";
+}
+extras
+{
+  get { methodName = "Definitions" path = <FSharpFile:
+IMPLEMENTATION_UNIT/implementationUnit:
+DEFINITION> interface="semantic"
+}
+;
+   get { methodName="IdentifierName" path=<FSharpFile
+  :
+    MODULE_NAME /qualifiedIdentifierName:
+NAME> }
+  ;
+ }
+ :
+    (
+		KEYWORD_MODULE<MODULE_KEYWORD, ModuleKeyword>		
+		qualifiedIdentifierNameFull{MODULE_NAME, ModuleName} 
+    )?
+    implementationUnit<IMPLEMENTATION_UNIT, ImplementationUnit, type="semantic">
+ ;
+ 
+ /*
+ errorhandling FSharpSpecificationFile options{hasSemanticInterface;}
+ :
+    (
+		KEYWORD_MODULE<MODULE_KEYWORD, ModuleKeyword>
+		qualifiedIdentifierNameFull{MODULE_NAME, ModuleName}
+    )?
+    interfaceUnit<SPECIFICATION_UNIT, SpecificationUnit>  
+ ;
+ */
+ 
+errorhandling interfaceUnit options{}
+ :
+	(
+	  specification<DECLARATION, Declarations>
+	  (KEYWORD_SEMICOLONSEMICOLON_OP<FSHARP_SEMICOLONSEMICOLON, SemicolonSemicolon>)?
+	)*
+;
+
+errorhandling implementationUnit options{ hasSemanticInterface; }
+ :
+	(
+	  definition<DEFINITION, Definitions, type="semantic">
+	  (KEYWORD_SEMICOLONSEMICOLON_OP<FSHARP_SEMICOLONSEMICOLON, SemicolonSemicolon>)?
+	)*
+;
+
+errorhandling interface specification options {hasSemanticInterface;}
+ :
+	valueSpecification 
+ |
+	typeDefinition 
+ |
+	!(#exception: KEYWORD_EXCEPTION)
+    !(#ident: identifier)    
+	exceptionDefinition[exception, ident]  
+ |
+	openModuleDefinition  
+;
+
+errorhandling interface definition options{ hasSemanticInterface; customInterface;}
+ :	 
+	letDefinition  
+ |
+	!(#exception: KEYWORD_EXCEPTION)
+    !(#ident: identifier)    
+	exceptionDefinition[exception, ident]  
+ | 
+	typeDefinition 
+ |
+	doExpressionDefinition  
+ |
+	openModuleDefinition  
+ |	
+    valueSpecification
+;
+
+valueSpecification options { hasSemanticInterface; customImpl; customInterface;
+  	stubBase = "JetBrains.ReSharper.Psi.FSharp.Impl.InferenceCacheSupport.InferenceErrorBase";}
+ :
+	KEYWORD_VAL<VAL_KEYWORD, ValKeyword>
+	valueName<VALUE_NAME, ValueName>
+	KEYWORD_COLON_OP<FSHARP_COLON, Colon>
+	typeExpression<TYPE_EXPRESSION, TypeExpression, type = "semantic">
+;
+
+letDefinition options { hasSemanticInterface; customImpl; customInterface; stubBase = "TypeVariableScopeBase";} 
+ : 
+   KEYWORD_LET<FSHARP_LET, LetKeyword>
+   (KEYWORD_REC<FSHARP_REC, RecKeyword>)?   
+   (KEYWORD_INLINE<FSHARP_INLINE, InlineKeyword>)?   
+   LIST bindingScheme<BINDING_SCHEME, BindingSchemes, type="semantic"> SEP KEYWORD_AND<FSHARP_AND, AndKeyword>  
+;
+
+//Warning! Overriding in FSharpParser!!!...
+errorhandling attribute options { hasSemanticInterface;}
+ :
+   KEYWORD_LBRACKETLT_OP<FSHARP_LBRACKETLT, LBracetLt>
+   attributeReference{ATTRIBUTE_NAME, AttributeName}
+   (
+	 KEYWORD_LPARENTH_OP<FSHARP_LPARENT, LParenth>	 
+	 tupleExpression<ARGUMENT_LIST, ArgumentList>
+	 KEYWORD_RPARENTH_OP<FSHARP_RPARENTH, RParenth>
+   )?      
+   KEYWORD_GTRBRACKET_OP<FSHARP_GTRBRACKET, GtRBracet>
+;
+
+//errorhandling ??
+attributeReference options { hasSemanticInterface; }
+ :
+    (
+      moduleReference<QUALIFIER, Qualifier, type = "semantic">
+      KEYWORD_DOT_OP<FSHARP_DOT, Dot>
+    )?
+    identifier<REFERENCE_NAME, ReferenceName>	
+;
+
+errorhandling interface bindingScheme options { hasSemanticInterface;}
+:	
+	doExpression
+   |
+	binding 
+;
+
+doExpression options { hasSemanticInterface;}
+ :
+	KEYWORD_DO<FSHARP_DO, DoKeyword>	
+	expression<EXPRESSION, Expression, type="semantic">
+;
+
+errorhandling binding options { hasSemanticInterface; customInterface; customImpl; }
+ :
+	(attribute<ATTRIBUTE, Attributes, type="semantic">)*	
+	bindingSource<SOURCE, Source, type="semantic">  	
+	KEYWORD_EQ_OP<FSHARP_EQ, Eq>
+	expression<TARGET, Target, type="semantic">
+	
+;
+
+//Warning! Overriding in FSharpParser!!!...	
+errorhandling interface bindingSource options { customParseFunction; noInternalParseFunction; hasSemanticInterface; customInterface;} 
+:	
+	bindingValueScheme
+	|		
+	bindingPattern	
+;
+
+errorhandling interface bindingValueScheme options { hasSemanticInterface; }
+ :
+	!(#value: valueName)
+	bindingValue[value]
+	|
+	mutableBindingValue
+;
+
+bindingPattern options { hasSemanticInterface; stubBase = "JetBrains.ReSharper.Psi.FSharp.Impl.InferenceCacheSupport.InferenceErrorBase";}
+extras {
+  get { methodName="ContainingLetDefinition" path=<binding:
+SOURCE/letDefinition:
+BINDING_SCHEME> interface="semantic" };
+}
+ :
+	pattern<PATTERN, Pattern, type="semantic">
+;
+
+//Warning! Overriding in FSharpParser!!!...	
+bindingValue[valueName value] options {customParseFunction; noInternalParseFunction; customImpl; hasSemanticInterface; customInterface;
+	stubBase = "JetBrains.ReSharper.Psi.FSharp.Impl.InferenceCacheSupport.InferenceErrorBase";}
+extras {
+  get { methodName="ContainingLetDefinition" path=<binding:
+SOURCE/letDefinition:
+BINDING_SCHEME> interface="semantic" };
+}
+ :
+	&value<NAME, ValueName>
+	(pattern<PARAMETER, Parameters, type="semantic">)*
+	(
+		KEYWORD_COLON_OP<FSHARP_COLON, Colon>
+		typeExpression<TYPE_EXPRESSION, TypeExpression, type="semantic">
+	)?
+;
+  
+mutableBindingValue options {hasSemanticInterface; customImpl; customInterface; stubBase = "JetBrains.ReSharper.Psi.FSharp.Impl.InferenceCacheSupport.InferenceErrorBase";}  
+extras {
+  get { methodName="ContainingLetDefinition" path=<binding:
+SOURCE/letDefinition:
+BINDING_SCHEME> interface="semantic" };
+}
+ :
+	KEYWORD_MUTABLE<KEYWORD_MUTABLE, MutableKeyword>
+	valueName<Name, ValueName>
+;
+    
+interface exceptionDefinition[KEYWORD_EXCEPTION exception, identifier ident] options {hasSemanticInterface; customInterface;}
+ :
+	(!(#of: KEYWORD_OF)
+	!(#type: typeExpression))?
+	(
+	exceptionAlias[exception, ident, of, type]
+  |
+	exceptionDeclaration[exception, ident, of, type]	
+	)
+;    
+    
+exceptionAlias[KEYWORD_EXCEPTION exception, identifier ident, KEYWORD_OF of, typeExpression type]  options {customImpl; customInterface; hasSemanticInterface;
+  stubBase = "JetBrains.ReSharper.Psi.FSharp.Impl.InferenceCacheSupport.InferenceTypeBase";}
+ :
+   &exception<EXCEPTION_KEYWORD, ExceptionKeyword>
+   &ident<EXCEPTION_NAME, ExceptionName>	
+   (
+	  &of<OF_KEYWORD, OFKeyword>
+	  &type<TYPE_EXPRESSION, TypeExpression, type="semantic">
+   )?
+   KEYWORD_EQ_OP<FSHARP_EQ, Eq>
+   exceptionReference<ALIAS, AliasReference, type="semantic">
+;
+
+errorhandling exceptionReference options {hasSemanticInterface; customImpl; customInterface;
+    stubBase = "JetBrains.ReSharper.Psi.FSharp.Impl.Tree.ReferenceBase";}
+ :
+	(
+      moduleReference<QUALIFIER, Qualifier, type = "semantic">
+      KEYWORD_DOT_OP<FSHARP_DOT, Dot>
+    )?
+    identifier<REFERENCE_NAME, ReferenceName>	
+;
+
+exceptionDeclaration[KEYWORD_EXCEPTION exception, identifier ident, KEYWORD_OF of, typeExpression type] options {customImpl; customInterface; hasSemanticInterface;
+  stubBase = "JetBrains.ReSharper.Psi.FSharp.Impl.InferenceCacheSupport.InferenceTypeBase";}
+ :
+   &exception<EXCEPTION_KEYWORD, ExceptionKeyword>
+   &ident<EXCEPTION_NAME, ExceptionName>	
+   (
+	  &of<OF_KEYWORD, OFKeyword>
+	  &type<TYPE_EXPRESSION, TypeExpression, type="semantic">
+   )?   
+;
+
+doExpressionDefinition options {hasSemanticInterface; customImpl; customInterface; stubBase = "TypeVariableScopeBase";}
+ :
+	KEYWORD_DO<FSHARP_DO, DoKeyword>	
+	expression<EXPRESSION, Expression>
+;
+
+openModuleDefinition options { hasSemanticInterface; customImpl; customInterface; }
+ :
+	KEYWORD_OPEN<OPEN_KEYWORD, OpenKeyword>
+	moduleReference<USING, Using, type = "semantic">
+ ;
+ 
+ moduleReference  options{ hasSemanticInterface; customImpl; customInterface; customParseFunction;
+     stubBase = "JetBrains.ReSharper.Psi.FSharp.Impl.Tree.ReferenceBase";}
+  :
+    (
+      moduleReference<QUALIFIER, Qualifier, type = "semantic">
+      KEYWORD_DOT_OP<FSHARP_DOT, Dot>
+    )?	    
+    identifier<REFERENCE_NAME, ReferenceName>				
+ ;
+ 
+ //errorhandling ???
+ moduleReferenceList options { hasSemanticInterface; customImpl; customInterface;}
+  :
+	LIST moduleReferenceOld<REFERENCE_NAME, ReferenceName, type="semantic"> SEP KEYWORD_DOT_OP<FSHARP_DOT, Dot>
+ ;
+ 
+ moduleReferenceOld options{ hasSemanticInterface; customImpl; customInterface;} // customParseFunction;
+   :
+	 identifier<NAME, Identifier> 
+  ;
+    
+
+/// A.3 Patterns
+ 
+errorhandling interface pattern options {		
+   multilevel: (
+	  "As" asValuePattern 	  
+ 	 ;
+ 	  "Or" disjunctionPattern				
+ 	 ;
+	  "Tuple" tuplePattern
+	 ;	  	  
+ 	  "List" righta listConstructorPattern			
+   );
+   hasSemanticInterface;
+   customInterface;    
+  }
+ :
+    asValuePattern
+  |
+    disjunctionPattern
+  |
+    listConstructorPattern
+  |
+	tuplePattern
+  |
+    bracketedPattern
+  |
+	arrayPattern
+  |
+	recordPattern
+  |
+	// !(#lparenth: KEYWORD_LPARENTH_OP)  //todo:???
+	// !(#pattern: pattern)
+    parenthesizedPattern				
+  |
+	//!(#lparenth: KEYWORD_LPARENTH_OP)   //todo:???
+	//!(#pattern: pattern)
+	typedPattern							
+  |
+    underlinePattern				
+  |
+	parameterizedConstructorPattern		
+  |
+	//only in structure of parameterizedConstructorPattern
+	constructorReference
+  |
+	valueDeclarationPattern
+  |
+	constantPattern  
+  | 
+	rangePattern
+  |
+	typeTestPattern
+;
+
+
+asValuePattern options {hasSemanticInterface; customImpl; customInterface;  stubBase = "PatternBase";} 
+ :
+	pattern<PATTERN, Pattern, type = "semantic">
+	KEYWORD_AS<KEYWORD_AS, AsKeyword>
+	valueName<VALUE_NAME, ValueName>
+;
+
+disjunctionPattern options {hasSemanticInterface;  stubBase = "PatternBase";}
+ :
+	pattern<LEFT_PATTERN, LeftPattern, type = "semantic">	
+	KEYWORD_OR_OP<FSHARP_OR, Or>
+	pattern<RIGHT_PATTERN, RightPattern, type = "semantic">	
+;
+   
+listConstructorPattern options {hasSemanticInterface;  stubBase = "PatternBase";}
+ :
+	pattern<LEFT_PATTERN, HeadPattern, type = "semantic">
+	KEYWORD_COLONCOLON_OP<FSHARP_COLONCOLON, ColonColon>
+	pattern<RIGHT_PATTERN, TailPattern, type = "semantic">	
+;
+
+tuplePattern options {hasSemanticInterface;  stubBase = "PatternBase";}
+ :
+	pattern<PATTERN, Pattern, type = "semantic">
+	(
+	 KEYWORD_COMMA_OP<FSHARP_COMMA, Comma>
+	 pattern<PATTERN, Pattern, type = "semantic">
+	)+
+;
+
+bracketedPattern options {hasSemanticInterface;  stubBase = "PatternBase";}
+ :
+	!(#lbracket: KEYWORD_LBRACKET_OP)
+	brackedPatternAux[lbracket]
+ ;
+
+private brackedPatternAux[KEYWORD_LBRACKET_OP lbracket] options {}
+ :
+	&lbracket<FSAHRP_LBRACKET, LBracket>	
+	LIST pattern<PATTERN, Patterns, type = "semantic"> SEP KEYWORD_SEMICOLON_OP<FSHARP_SEMICOLON, Semicolon>
+	KEYWORD_RBRACKET_OP<FSAHRP_LBRACKET, RBracket>
+;
+
+arrayPattern options {hasSemanticInterface;  stubBase = "PatternBase";}
+ :
+	!(#lbracketOr: KEYWORD_LBRACKETOR_OP)							
+	arrayPatternAux[lbracketOr]
+ ;
+ 
+private arrayPatternAux[KEYWORD_LBRACKETOR_OP lbracketOr] options {}
+ :
+	&lbracketOr<FSAHRP_LBRACKET, LBracket>	
+	LIST pattern<PATTERN, Patterns, type = "semantic"> SEP KEYWORD_SEMICOLON_OP<FSHARP_SEMICOLON, Semicolon>
+	KEYWORD_ORRBRACKET_OP<FSAHRP_RBRACKET, RBracket>
+ ;
+
+recordPattern options {hasSemanticInterface;  stubBase = "PatternBase";}
+ extras {
+	get { methodName="FieldPatterns" path=<recordPattern:
+FIELD_PATTERNS/fieldPatternList:
+FIELD_PATTERN> interface="semantic" };
+  }
+ :
+	KEYWORD_LBRACE_OP<FSAHRP_LBRACE, LBrace>										
+	fieldPatternList<FIELD_PATTERNS, FieldPatternList> 
+	KEYWORD_RBRACE_OP<FSAHRP_RBRACE, RBrace>
+ ;
+
+//Warning! Overriding in FSharpParser!!!...	
+fieldPatternList options {hasSemanticInterface;}
+ :
+	LIST fieldPattern<FIELD_PATTERN, FieldPatterns, type = "semantic"> 
+	     SEP KEYWORD_SEMICOLON_OP<FSHARP_SEMICOLON, Semicolon>	
+;
+
+
+errorhandling fieldPattern options {hasSemanticInterface;}
+ :
+	fieldReference<FIELD, FieldName, type = "semantic">
+	KEYWORD_EQ_OP<FSAHRP_EQ, Eq>
+	pattern<PATTERN, Pattern, type = "semantic">	
+;
+
+parenthesizedPattern options {hasSemanticInterface;  stubBase = "PatternBase"; } 
+ :
+	!(#lparenth: KEYWORD_LPARENTH_OP)
+	!(#pattern: pattern)
+	parenthesizedPatternAux[lparenth, pattern]
+;
+
+private parenthesizedPatternAux[KEYWORD_LPARENTH_OP lparenth, pattern pattern] options {}
+ :
+	&lparenth<FSHARP_LPARENTH, LParenth>
+	&pattern<PATTERN, Pattern, type = "semantic">
+	KEYWORD_RPARENTH_OP<FSHARP_RPARENTH, RParenth>
+;
+ 
+typedPattern options {hasSemanticInterface;  stubBase = "PatternBase";}
+ :	
+	!(#lparenth: KEYWORD_LPARENTH_OP)
+	!(#pattern: pattern)
+	typedPatternAux[lparenth, pattern]
+; 
+
+private typedPatternAux[KEYWORD_LPARENTH_OP lparenth, pattern pattern] options {}
+ :
+	&lparenth<FSHARP_LPARENTH, LParenth>
+	&pattern<PATTERN, Pattern, type = "semantic">
+	KEYWORD_COLON_OP<FSHARP_COLON, Colon>
+	typeExpression<TYPE_EXPRESSION, TypeExpression, type = "semantic">	
+	KEYWORD_RPARENTH_OP<FSHARP_RPARENTH, RParenth>
+;
+   
+underlinePattern options {hasSemanticInterface;  stubBase = "PatternBase";}
+ :    
+	KEYWORD_UNDERLINE_OP<FSHARP_UNDERLINE, Underline>
+;
+
+//Constructor without params and qualifiers are here!
+valueDeclarationPattern options { customImpl;
+customInterface;
+hasSemanticInterface;  stubBase = "PatternBase";}
+ :
+	valueName<VALUE, Value>
+;
+
+parameterizedConstructorPattern options {hasSemanticInterface; customImpl; customInterface; stubBase = "PatternBase";}
+ :
+	constructorReference<CONSTRUCTOR_REFERENCE, ConstructorReference, type = "semantic">
+	pattern<PARAMETER, Parameter, type = "semantic">?
+;
+
+constructorReference options {hasSemanticInterface; customImpl; customInterface; stubBase = "PatternBase";}
+ :
+	(
+      moduleReference<QUALIFIER, Qualifier, type = "semantic">
+      KEYWORD_DOT_OP<FSHARP_DOT, Dot>
+    )?
+    identifier<REFERENCE_NAME, ReferenceName>	
+;
+
+constantPattern options {hasSemanticInterface; customImpl; customInterface;  stubBase = "PatternBase";}
+ :
+	constantValue{VALUE, Value}
+;
+
+rangePattern options {hasSemanticInterface;  stubBase = "PatternBase";}
+ :
+	CHARACTER_LITERAL<LOWER_BOUND, LowerBound>
+	KEYWORD_DOTDOT_OP<FSHARP_DOTDOT, DotDot>	
+	CHARACTER_LITERAL<UPPER_BOUND, UpperBound>	
+;
+
+typeTestPattern options {hasSemanticInterface;  stubBase = "PatternBase";}
+ :
+	KEYWORD_COLONQUEST_OP<FSHARP_COLONQUEST, Colonquest>
+	typeExpression<TYPE_EXPRESSION, TypeExpression>
+;
+
+//  A.4.1 Grammar part for type definitions
+
+typeDefinition options {hasSemanticInterface; customImpl; customInterface; }
+ :
+	KEYWORD_TYPE<FSHARP_TYPE, TypeKeyword>
+	LIST typeDeclaration<TYPE_DECLARATION, TypeDeclarations, type = "semantic"> SEP KEYWORD_AND<FSHARP_AND, AndKeyword>		
+;
+
+errorhandling typeDeclaration options {hasSemanticInterface; customImpl; customInterface; 
+	stubBase = "JetBrains.ReSharper.Psi.FSharp.Impl.InferenceCacheSupport.InferenceTypeBase";}
+  extras {
+	get { methodName="TypeParameters" path=<typeDeclaration:
+TYPE_PARAMETERS/typeParameterList:
+PARAMETER_DECLARATION> interface="semantic" };
+  }
+ :
+	// (attribute<ATTRIBUTE, Attributes, type="semantic">)*
+	typeParameterList<TYPE_PARAMETERS,TypeParameterList>?
+	identifier<TYPE_NAME, TypeName> //todo:  type= "semantic"
+	KEYWORD_EQ_OP<FSHARP_EQ, Eq>
+	typeInformation<TYPE_INFORMATION, TypeInformation, type="semantic">?
+;
+
+typeParameterList options {hasSemanticInterface;}
+ :	 
+	KEYWORD_LPARENTH_OP<FSHARP_LPARENTH, LParenth>
+	LIST typeParameterDeclaration<PARAMETER_DECLARATION, ParameterDeclarations> SEP KEYWORD_COMMA_OP<FSHARP_COMMA, Comma>
+	KEYWORD_RPARENTH_OP<FSHARP_RPARENTH, RParenth>
+ |
+	typeParameterDeclaration<PARAMETER_DECLARATION, ParameterDeclarations>
+;
+ 
+errorhandling typeParameterDeclaration options {hasSemanticInterface; customImpl; customInterface;
+  stubBase = "JetBrains.ReSharper.Psi.FSharp.Impl.InferenceCacheSupport.InferenceTypeBase";
+}				
+ :
+	(
+		KEYWORD_QUOT_OP<FSHARP_QUOT, Apostrophe>
+	  |
+		KEYWORD_DOLLAR_OP<FSHARP_DOLLAR, Dollar>
+	)
+	identifier<PARAMETER, ParameterName>
+;
+
+errorhandling interface typeInformation options { hasSemanticInterface;}
+ :
+	typeRepresentation 
+ |
+	typeExpression
+ |
+	typeRefOrConstructorDecl
+;
+
+interface typeRepresentation options{ hasSemanticInterface;}
+ :
+	  algebraicTypeRepresentation  
+	|
+	  recordTypeRepresentation 
+;
+
+algebraicTypeRepresentation options { hasSemanticInterface;}
+ :
+	KEYWORD_OR_OP<FSHARP_OR, Or>?
+	LIST constructorDeclaration<CONSTRUCTOR, Constructors, type="semantic"> SEP KEYWORD_OR_OP<FSHARP_OR, Or>
+;
+
+recordTypeRepresentation options { hasSemanticInterface;}
+ extras {
+	get { methodName="FieldDeclarations" path=<recordTypeRepresentation:
+FIELD_DECLARATIONS/fieldDeclarationList:
+FIELD_DECLARATION> interface="semantic" };
+  }
+ :
+	KEYWORD_LBRACE_OP<FSHARP_LBRACE, LBrace>
+	fieldDeclarationList<FIELD_DECLARATIONS, FieldDeclarationList, type = "semantic">
+	KEYWORD_RBRACE_OP<FSHARP_RBRACE, RBrace>
+;
+
+errorhandling constructorDeclaration options {hasSemanticInterface; customImpl; customInterface; 
+  stubBase = "JetBrains.ReSharper.Psi.FSharp.Impl.InferenceCacheSupport.InferenceTypeBase";}
+  extras {
+	get { methodName="TypeDeclaration" path=<algebraicTypeRepresentation:
+CONSTRUCTOR/typeDeclaration:
+TYPE_INFORMATION> interface="semantic" };
+  }
+ :
+	identifier<CONSTRUCTOR_NAME, ConstructorName> 	
+	(
+		KEYWORD_OF<KEYWORD_OF, OfKeyword>
+		typeExpression<TYPE_EXPRESSION, TypeExpression, type="semantic">
+	)?
+;
+
+//dynamic node: declaration of Constructor if not resolved, typeReference else...
+//todo: Used in F#Parser in TypeInformation parsing
+typeRefOrConstructorDecl options {hasSemanticInterface; customImpl; customInterface;}
+ extras {
+	get { methodName="TypeDeclaration" path=<typeDeclaration:
+TYPE_INFORMATION> interface="semantic" };
+  }
+ :
+	identifier<NAME, Name>
+;
+
+//Warning! Overriding in FSharpParser!!!...	
+fieldDeclarationList options {hasSemanticInterface;}
+ :
+	LIST fieldDeclaration <FIELD_DECLARATION, FieldDeclarations, type = "semantic"> 
+	     SEP KEYWORD_SEMICOLON_OP<FSHARP_SEMICOLON, Semicolon>	
+;
+
+errorhandling fieldDeclaration options { hasSemanticInterface; customInterface; customImpl;}
+ :
+	KEYWORD_MUTABLE<KEYWORD_MUTABLE, MutableKeyword>?
+	identifier<FIELD, FieldName>
+	KEYWORD_COLON_OP<FSHARP_COLON, Colon>
+	typeSchemeExpression<TYPE_SCHEME, typeSchemeExpression, type="semantic">	
+;
+
+//Warning! Overriding in FSharpParser!!!...	
+errorhandling interface typeSchemeExpression options { hasSemanticInterface;}
+ :
+	  typeExpression<TYPE_EXPRESSION, TypeExpression>
+	|
+	  !(#param: typeParameterDeclaration)	  	  
+	  forAllTypeExpression<TYPE_EXPRESSION, TypeExpression>[param]
+;
+  
+forAllTypeExpression [typeParameterDeclaration param] options { hasSemanticInterface;}
+:
+	//KEYWORD_QUOT_OP<FSHARP_QUOT, Apostrophe>
+	//identifier<PARAMETER, ParameterName> //todo:  type= "semantic">	
+	&param<PARAMETER, Parameter>
+	KEYWORD_DOT_OP<FSHARP_DOT, Dot>
+	typeExpression<PARAMETERIZED_TYPE_EXPRESSION, ParameterizedTypeExpression, type="semantic">
+;
+
+//  A.4.2 Grammar part for type expressions
+
+interface parameterizedTypeReference options {hasSemanticInterface; customInterface;}
+ :
+	oneParameterTypeReference
+  |
+	multiParameterTypeReference
+  |
+	withoutParameterTypeReference	  
+;
+
+errorhandling interface typeExpression options {
+   multilevel: (
+	  "Fun" righta functionType
+	;
+	  "Tuple" tupleType
+	;
+	  "Appl" oneParameterTypeReference, arrayType, lazyType
+   );
+   
+   hasSemanticInterface;   
+   customInterface;
+   }
+ :
+	functionType		
+ |
+ 	tupleType			
+ |
+	arrayType	 
+ |
+	lazyType	
+ |		
+	typeParameterReference
+ | 
+	underlineType
+ |
+	parenthesizedType
+ |
+	oneParameterTypeReference
+ |
+	multiParameterTypeReference
+ |
+	withoutParameterTypeReference	
+; 
+ 
+functionType options { hasSemanticInterface; customImpl; customInterface; stubBase = "TypeExpressionBase";}
+ :
+	typeExpression<DOMAIN, Domain, type="semantic">
+	KEYWORD_RARROW_OP<FSHARP_RARROW, RArrow>
+	typeExpression<RANGE, Range, type="semantic">
+;
+
+tupleType options { hasSemanticInterface; customImpl; customInterface; stubBase = "TypeExpressionBase";}
+ :
+	typeExpression<TYPE_EXPRESSION, TypeExpression, type="semantic">
+	(
+		KEYWORD_ASTERISK_OP<FSHARP_ASTERISK, Asterisk>
+		typeExpression<TYPE_EXPRESSION, TypeExpression, type="semantic">
+	)+
+;
+
+arrayType options { hasSemanticInterface; customImpl; customInterface; stubBase = "TypeExpressionBase";  }
+ :
+	typeExpression<ARRAY_NAME, ArrayName, type="semantic">
+	KEYWORD_LBRACKET_OP<FSHARP_LBRACKET, LBracket>
+	(KEYWORD_COMMA_OP<FSHARP_COMMA, Comma>)*
+	KEYWORD_RBRACKET_OP<FSHARP_RBRACKET, RBracket>
+;
+
+lazyType options {hasSemanticInterface; customImpl; customInterface; stubBase = "TypeExpressionBase"; }
+ :
+	typeExpression<TYPE_EXPRESSION, TypeExpression, type="semantic">
+	KEYWORD_LAZY<LAZY_KEYWORD, LazyKeyword>
+;
+
+
+oneParameterTypeReference options {hasSemanticInterface; customImpl; customInterface; customImpl; customInterface;}
+ :
+	typeExpression<PARAMETER, Parameter, type="semantic">
+	typeReference<TYPE_REFERENCE, TypeReference, type="semantic">		
+;
+
+typeParameterReference options {hasSemanticInterface; customImpl; customInterface; stubBase = "TypeExpressionBase";  }
+ :
+	(
+		KEYWORD_QUOT_OP<FSHARP_QUOT, Apostrophe>
+	  |
+		KEYWORD_DOLLAR_OP<FSHARP_DOLLAR, Dollar>
+	)
+	identifier<PARAMETER, ParameterName> 
+;
+
+parenthesizedType options {hasSemanticInterface; customImpl; customInterface; stubBase = "TypeExpressionBase"; }
+ :
+	!(#lparenth:
+KEYWORD_LPARENTH_OP)
+	!(#expression:
+typeExpression)
+	parenthesizedTypeAux[lparenth, expression]
+;
+
+private parenthesizedTypeAux[KEYWORD_LPARENTH_OP lparenth, typeExpression expression] options {}
+ :
+	&lparenth<FSHARP_LPARENTH, LParenth>
+	&expression<TYPE_EXPRESSION, TypeExpression, type="semantic">
+	KEYWORD_RPARENTH_OP<FSHARP_RPARENTH, RParenth>		
+;
+
+multiParameterTypeReference options {hasSemanticInterface; customInterface; customImpl; }
+ :
+	!(#lparenth:
+KEYWORD_LPARENTH_OP)
+	!(#expression:
+typeExpression)
+	multiParameterTypeReferenceAux[lparenth, expression]
+;
+
+private multiParameterTypeReferenceAux[KEYWORD_LPARENTH_OP lparenth, typeExpression expression] options {}
+ :
+	&lparenth<FSHARP_LPARENTH, LParenth>
+	&expression<PARAMETER, Parameters, type="semantic">
+	KEYWORD_COMMA_OP<FSHARP_COMMA, Comma>
+	LIST typeExpression<PARAMETER, Parameters, type="semantic"> SEP KEYWORD_COMMA_OP<FSHARP_COMMA, Comma>
+	KEYWORD_RPARENTH_OP<FSHARP_RPARENTH, RParenth>
+	typeReference<TYPE_REFERENCE, TypeReference, type="semantic">	
+;
+
+withoutParameterTypeReference options {hasSemanticInterface; customInterface; customImpl; }
+ :
+	typeReference<TYPE_REFERENCE, TypeReference, type="semantic">
+;
+
+//typeRefOrConstrDecl is typeReference also!...
+typeReference options{hasSemanticInterface; customImpl; customInterface; stubBase = "TypeExpressionBase";  }
+ :
+	(
+      moduleReference<QUALIFIER, Qualifier, type = "semantic">
+      KEYWORD_DOT_OP<FSHARP_DOT, Dot>
+    )?
+    identifier<REFERENCE_NAME, ReferenceName>	
+;
+
+underlineType options {hasSemanticInterface; customImpl; customInterface; stubBase = "TypeExpressionBase";  }
+ :
+	KEYWORD_UNDERLINE_OP<FSHARP_UNDERLINE, Underline>
+;
+
+// Operation Interfaces
+
+interface binaryExpression options { hasSemanticInterface; }
+ :
+	binaryAddExpression
+ |
+	binaryMultExpression
+ |
+	binaryPowerExpression
+ |
+	comparisonExpression
+ |
+	andExpression
+ |
+	orExpression	
+ |
+ 	listConcatenateExpression
+ |
+	stringConcatenateExpression
+ |
+	assignExpression
+ |
+	assignFieldExpression
+ |		
+	listConstructorExpression	
+ |
+	infixOperatorExpression	
+// |
+//	parenthesizedFieldValueExpression
+// |
+//	bracketedFieldValueExpression	
+;
+
+interface unaryExpression options { hasSemanticInterface; }
+ :
+	unaryMinusExpression
+  |	
+	prefixOperatorExpression
+;
+
+interface operatorExpression options {hasSemanticInterface; customInterface; }
+ :
+	unaryExpression
+ |
+	binaryExpression
+;
+
+/// A.5 Expressions			
+
+errorhandling interface expression options {   
+   multilevel: (
+	 "Seq" righta expressionSequence	 
+	;	
+	 "Assign" righta assignExpression, assignFieldExpression
+	;
+	 "Tuple" tupleExpression
+	;	
+	 "Or" orExpression
+	;
+	 "And" andExpression
+	;
+	 "Compare" comparisonExpression, infixOperatorExpression
+	;
+	 "Concat" righta listConcatenateExpression, stringConcatenateExpression
+	;
+	 "List" righta listConstructorExpression
+	;
+	 "Add" binaryAddExpression
+	;
+	 "Mult" binaryMultExpression	
+	;
+	 "Power" binaryPowerExpression
+	;
+	 "UnaryMinus" unaryMinusExpression   //Warning! Overriding in FSharpParser!!!...	 
+	;
+	 "Appl" applicationExpression		 //Warning! Overriding in FSharpParser!!!...
+	;
+	 "FieldValue" parenthesizedFieldValueExpression, bracketedFieldValueExpression, memberAccessExpression  
+										 //Warning! Overriding in FSharpParser!!!...
+	;
+	 "Unary" prefixOperatorExpression			 //Warning! Overriding in FSharpParser!!!...
+  );
+   customInterface;
+   hasSemanticInterface;  
+ }  
+ :	
+	tupleExpression	
+ |
+	expressionSequence 
+ |
+	applicationExpression
+ |  
+	valueReferenceExpression
+ |
+ 	localDeclarationsInExpression
+ |
+	typedExpression 
+ |
+	constantExpression 
+ |
+	parenthesizedExpression
+ |	
+	bracketedExpression
+ |
+	arrayExpression
+ |
+	recordExpression
+ |
+	withRecordExpression
+ |
+	creationWithOverridingMethodsExpression
+ |	
+
+// IOperatorExpression Section
+	unaryMinusExpression
+  |	
+	prefixOperatorExpression
+ |
+	binaryAddExpression
+ |
+	binaryMultExpression
+ |
+	binaryPowerExpression
+ |
+	comparisonExpression
+ |
+	andExpression
+ |
+	orExpression	
+ |
+ 	listConcatenateExpression
+ |
+	stringConcatenateExpression
+ |
+	assignExpression
+ |
+	assignFieldExpression
+ |		
+	listConstructorExpression	
+ |
+	infixOperatorExpression	
+// End of Section
+ 
+ |
+ 
+// Dot Operators Section
+	memberAccessExpression
+ |
+	parenthesizedFieldValueExpression
+ |
+	bracketedFieldValueExpression		
+//End of Section
+ 
+ |
+	expressionBlock
+ |
+	ifStatementExpression
+ |
+	whileStatementExpression
+ |
+	forStatementExpression
+ |
+	funExpression
+ |
+	functionExpression
+ |
+	tryWithExpression 
+ |
+	tryFinallyExpression
+ |
+	matchExpression
+ |	
+	creationExpression
+ |
+	assertExpression
+ |
+	lazyExpression	
+ |
+	upcastExpression
+ |
+	downcastExpression
+ |
+	upcastExpressionToType
+ |
+	downcastExpressionToType
+ |
+	typeTestExpression
+
+// |
+//    parameterizedExpression    
+ ;
+ 
+errorhandling tupleExpression options {  hasSemanticInterface;  stubBase = "ExpressionBase";}
+ :
+	expression<EXPRESSION, Expression, type="semantic">
+	(
+	  KEYWORD_COMMA_OP<FSHARP_COMMA, Comma>	
+	  expression<EXPRESSION, Expression, type="semantic">
+	)+
+ ;
+  
+expressionSequence options {  hasSemanticInterface;  stubBase = "ExpressionBase";}
+ :
+	expression<EXPRESSION1, Expression1, type="semantic">
+	KEYWORD_SEMICOLON_OP<FSHARP_SEMICOLON, Semicolon>	
+	expression<EXPRESSION2, Expression2, type="semantic">	
+;
+
+
+applicationExpression options {hasSemanticInterface; stubBase = "ExpressionBase";}
+ :
+	expression<EXPRESSION, Expression, type="semantic">
+	expression<OPERAND, Operand, type="semantic">
+;
+
+valueReferenceExpression options {hasSemanticInterface; customInterface; customImpl; stubBase = "ReferenceExpressionBase";}
+ :
+    (
+      moduleReference<QUALIFIER, Qualifier, type = "semantic">
+      KEYWORD_DOT_OP<FSHARP_DOT, Dot>
+    )?
+    valueName<REFERENCE_NAME, ReferenceName>	
+;
+
+errorhandling interface valueReferenceExpressionOld options {hasSemanticInterface;}
+ :
+	qualifiedValueReference	
+  |
+	qualifiedIdReference	
+;
+
+qualifiedValueReference options {hasSemanticInterface; customInterface; customImpl; stubBase = "ExpressionBase";}
+ :
+	qualifiedValueName<REFERENCE_VALUE, ReferenceValue, type = "semantic">
+;
+
+qualifiedIdReference options {hasSemanticInterface; stubBase = "ExpressionBase";}
+ :
+	LIST idReference<REFERENCES, References, type="semantic"> SEP KEYWORD_DOT_OP<FSHARP_DOT, Dot>
+;
+
+idReference options {hasSemanticInterface; customInterface; customImpl; 
+	stubBase = "JetBrains.ReSharper.Psi.FSharp.Impl.InferenceCacheSupport.InferenceTypeBase";}
+ :
+	identifier<NAME, Identifier> 
+;
+
+// errorhandling ???
+/*errorhandling valueReferenceExpressionOld options { hasSemanticInterface; customInterface; customImpl; stubBase = "ExpressionBase";}
+ :
+	qualifiedValueName<REFERENCE_VALUE, ReferenceValue, type = "semantic">
+;
+*/
+
+localDeclarationsInExpression options { hasSemanticInterface; customImpl; customInterface; stubBase = "ExpressionBase"; }
+ :
+	KEYWORD_LET<FSHARP_LET, LetKeyword>
+	KEYWORD_REC<FSHARP_REC, RecKeyword>?
+	LIST binding<BINDING, Bindings, type="semantic"> SEP KEYWORD_AND<FSHARP_AND, AndKeyword>
+	KEYWORD_IN<FSHARP_IN, InKeyword>
+	expression<EXPRESSION, Expression, type="semantic">
+;
+
+typedExpression options {  hasSemanticInterface; stubBase = "ExpressionBase";}
+ :
+    !(#lparenth: KEYWORD_LPARENTH_OP)
+	!(#expression: expression)
+	typedExpressionAux[lparenth, expression]
+ ;
+
+//errorhandling ???
+private typedExpressionAux[KEYWORD_LPARENTH_OP lparenth, expression expression] options {}
+ :
+	&lparenth<FSHARP_LPARENTH, LParenth>
+	&expression<EXPRESSION, Expression, type="semantic">
+	KEYWORD_COLON_OP<FSHARP_COLON, Colon>
+	typeExpression<TYPE_EXPRESSION, TypeExpression, type="semantic">	
+	KEYWORD_RPARENTH_OP<FSHARP_RPARENTH, RParenth>
+;
+
+// errorhandling ???
+errorhandling constantExpression options { hasSemanticInterface; customImpl; customInterface; stubBase = "ExpressionBase";}
+ :
+	constantValue{VALUE, Value}
+;
+
+
+parenthesizedExpression options {  hasSemanticInterface; stubBase = "ExpressionBase"; }
+ :
+	!(#lparenth: KEYWORD_LPARENTH_OP)
+	!(#expression: expression)
+	parenthesizedExpressionAux[lparenth, expression]
+ ;
+
+// errorhandling???
+private parenthesizedExpressionAux[KEYWORD_LPARENTH_OP lparenth, expression expression] options {}
+ :
+	&lparenth<FSHARP_LPARENTH, LParenth>
+	&expression<EXPRESSION, Expression, type="semantic">
+	KEYWORD_RPARENTH_OP<FSHARP_RPARENTH, RParenth>
+;
+
+bracketedExpression options {  hasSemanticInterface; stubBase = "ExpressionBase";}
+ :
+	KEYWORD_LBRACKET_OP<FSAHRP_LBRACKET, LBracket>
+	expression<EXPRESSION, Expression, type="semantic">
+	KEYWORD_RBRACKET_OP<FSAHRP_LBRACKET, RBracket>
+ ;
+
+arrayExpression options {  hasSemanticInterface; stubBase = "ExpressionBase";}
+ :
+	KEYWORD_LBRACKETOR_OP<FSAHRP_LBRACKET, LBracket>									
+	expression<EXPRESSION, Expression, type="semantic">
+	//LIST expression<EXPRESSION, Expressions> SEP KEYWORD_SEMICOLON_OP<FSHARP_SEMICOLON, Semicolon>
+	KEYWORD_ORRBRACKET_OP<FSAHRP_RBRACKET, RBracket>
+ ;
+ 
+recordExpression options { hasSemanticInterface; stubBase = "ExpressionBase";}				
+extras {
+	get { methodName="FieldAssignments" path=<recordExpression:
+FIELD_ASSIGNMENTS/fieldAssignmentList:
+FIELD_ASSIGNMENT> interface="semantic" };
+  }
+ :
+	KEYWORD_LBRACE_OP<FSAHRP_LBRACE, LBrace>	
+	fieldAssignmentList<FIELD_ASSIGNMENTS, fieldAssignmentList>
+	KEYWORD_RBRACE_OP<FSAHRP_RBRACE, RBrace>
+ ;
+ 
+ //Warning! Overriding in FSharpParser!!!...
+fieldAssignmentList options {hasSemanticInterface;}
+  :
+	LIST fieldAssignment<FIELD_ASSIGNMENT, FieldAssignments, type="semantic"> 
+	     SEP KEYWORD_SEMICOLON_OP<FSHARP_SEMICOLON, Semicolon>	
+ ;
+ 
+ //Warning! Overriding in FSharpParser!!!...
+fieldAssignment options {hasSemanticInterface; }
+  :
+	fieldReference<FIELD, FieldName>
+	KEYWORD_EQ_OP<FSAHRP_EQ, Eq>
+	expression<FIELD_VALUE, FieldValue, type="semantic">		
+ ; 
+ 
+withRecordExpression options { hasSemanticInterface; stubBase = "ExpressionBase";}				
+extras {
+	get { methodName="FieldAssignments" path=<withRecordExpression:
+FIELD_ASSIGNMENTS/fieldAssignmentList:
+FIELD_ASSIGNMENT> interface="semantic" };
+  }
+ :
+	KEYWORD_LBRACE_OP<FSAHRP_LBRACE, LBrace>
+	expression<EXPRESSION, Expression, type="semantic">
+	KEYWORD_WITH<WITH_KEYWORD, WithKeyword>
+	fieldAssignmentList<FIELD_ASSIGNMENTS, fieldAssignmentList>
+	KEYWORD_RBRACE_OP<FSAHRP_RBRACE, RBrace>	
+ ; 
+ 
+creationWithOverridingMethodsExpression options {  hasSemanticInterface; stubBase = "ExpressionBase";}
+ :	
+	!(#lbrace: KEYWORD_LBRACE_OP)
+	creationWithOverridingMethodsExpressionAux[lbrace]
+; 
+
+private creationWithOverridingMethodsExpressionAux[KEYWORD_LBRACE_OP lbrace] options {}
+ :
+	&lbrace<FSAHRP_LBRACE, LBrace>
+	creationExpression<CREATION_EXPRESSION, CreationExpression, type="semantic">
+	KEYWORD_WITH<WITH_KEYWORD, WithKeyword>
+	LIST bindingScheme<BINDING_SCHEME, BindingSchemes, type="semantic"> SEP KEYWORD_AND<AND_KEYWORD, AndKeyword>
+	KEYWORD_RBRACE_OP<FSAHRP_RBRACE, RBrace>		
+;
+
+// **********  Unary Operators Section  **********
+unaryMinusExpression options { stubBase = "OperatorExpressionBase"; hasSemanticInterface;}
+ :
+	(
+		KEYWORD_MINUS_OP<OPERATION_SIGN, OperationSign>
+		|
+		KEYWORD_MINUSDOT_OP<OPERATION_SIGN, OperationSign>
+	)
+	expression<OPERAND, Operand, type="semantic">
+;
+
+prefixOperatorExpression options { stubBase = "OperatorExpressionBase"; hasSemanticInterface; }
+ :
+	prefixSymbol{OPERATION_SIGN, OperationSign}
+	expression<OPERAND, Operand, type="semantic">
+;
+// **********  Unary Operators Section End  **********
+
+// **********  Binary Operators Section  **********
+binaryAddExpression options { stubBase = "OperatorExpressionBase"; hasSemanticInterface;}
+ :
+	expression<LEFT_OPERAND, LeftOperand, type="semantic">
+	(
+		KEYWORD_PLUS_OP<OPERATION_SIGN, OperationSign>
+		|
+		KEYWORD_MINUS_OP<OPERATION_SIGN, OperationSign>
+		|
+		OPERATOR_PLUS<OPERATION_SIGN, OperationSign>
+		|
+		OPERATOR_MINUS<OPERATION_SIGN, OperationSign>
+	)
+	expression<RIGHT_OPERAND, RightOperand, type="semantic">
+;
+
+binaryMultExpression options { stubBase = "OperatorExpressionBase";
+hasSemanticInterface; }
+ :
+	expression<LEFT_OPERAND, LeftOperand, type="semantic">
+	(
+		KEYWORD_ASTERISK_OP<OPERATION_SIGN, OperationSign>
+		|
+		KEYWORD_MOD<OPERATION_SIGN, OperationSign>
+		|
+		OPERATOR_ASTERISK<OPERATION_SIGN, OperationSign>
+		|
+		OPERATOR_DIV<OPERATION_SIGN, OperationSign>
+		|
+		OPERATOR_PERC<OPERATION_SIGN, OperationSign>
+	)
+	expression<RIGHT_OPERAND, RightOperand, type="semantic">
+;
+
+binaryPowerExpression options { stubBase = "OperatorExpressionBase"; hasSemanticInterface;}
+ :
+	expression<LEFT_OPERAND, LeftOperand, type="semantic">
+	OPERATOR_ASTERISKASTERISK<OPERATION_SIGN, OperationSign>
+	expression<RIGHT_OPERAND, RightOperand, type="semantic">
+;
+
+comparisonExpression options { stubBase = "OperatorExpressionBase"; hasSemanticInterface;}
+ :
+	expression<LEFT_OPERAND, LeftOperand, type="semantic">
+	(
+		KEYWORD_EQ_OP<OPERATION_SIGN, OperationSign>
+		|
+		KEYWORD_LT_OP<OPERATION_SIGN, OperationSign>
+		|
+		KEYWORD_GT_OP<OPERATION_SIGN, OperationSign>		
+		|
+		KEYWORD_NOTEQ_OP<OPERATION_SIGN, OperationSign>
+		|
+		OPERATOR_EQ<OPERATION_SIGN, OperationSign>
+		|
+		OPERATOR_LT<OPERATION_SIGN, OperationSign>
+		|		
+		OPERATOR_GT<OPERATION_SIGN, OperationSign>		
+	)
+	expression<RIGHT_OPERAND, RightOperand, type="semantic">
+;
+
+andExpression options { stubBase = "OperatorExpressionBase"; hasSemanticInterface;}
+ :
+	expression<LEFT_OPERAND, LeftOperand, type="semantic">
+	(
+		KEYWORD_AND_OP<OPERATION_SIGN, OperationSign>
+		|
+		KEYWORD_ANDAND_OP<OPERATION_SIGN, OperationSign>
+	)
+	expression<RIGHT_OPERAND, RightOperand, type="semantic">
+;
+
+orExpression options { stubBase = "OperatorExpressionBase"; hasSemanticInterface;}
+ :
+	expression<LEFT_OPERAND, LeftOperand, type="semantic">
+	(
+		KEYWORD_OR<OPERATION_SIGN, OperationSign>
+		|
+		KEYWORD_OROR_OP<OPERATION_SIGN, OperationSign>
+	)
+	expression<RIGHT_OPERAND, RightOperand, type="semantic">
+;
+
+listConcatenateExpression options { stubBase = "OperatorExpressionBase"; hasSemanticInterface;}
+ :
+	expression<LEFT_OPERAND, LeftOperand, type="semantic">
+	OPERATOR_AT<FSHARP_AT, OperationSign>		
+	expression<RIGHT_OPERAND, RightOperand, type="semantic">
+;
+
+stringConcatenateExpression options { stubBase = "OperatorExpressionBase"; hasSemanticInterface;}
+ :
+	expression<LEFT_OPERAND, LeftOperand, type="semantic">
+	OPERATOR_XOR<OPERATION_SIGN, OperationSign>		
+	expression<RIGHT_OPERAND, RightOperand, type="semantic">
+;
+
+assignExpression options { stubBase = "OperatorExpressionBase"; hasSemanticInterface;}
+ :
+	expression<LEFT_OPERAND, LeftOperand, type="semantic">
+	KEYWORD_COLONEQ_OP<OPERATION_SIGN, OperationSign>
+	expression<RIGHT_OPERAND, RightOperand, type="semantic">
+;
+
+assignFieldExpression options { stubBase = "OperatorExpressionBase"; hasSemanticInterface;}
+ :
+	expression<LEFT_OPERAND, LeftOperand, type="semantic">
+	KEYWORD_LARROW_OP<OPERATION_SIGN, OperationSign>
+	expression<RIGHT_OPERAND, RightOperand, type="semantic">
+;
+
+listConstructorExpression options { stubBase = "OperatorExpressionBase"; hasSemanticInterface;}
+ :
+	expression<LEFT_OPERAND, LeftOperand, type="semantic">
+	KEYWORD_COLONCOLON_OP<OPERATION_SIGN, OperationSign>
+	expression<RIGHT_OPERAND, RightOperand, type="semantic">	
+;
+
+infixOperatorExpression options { stubBase = "OperatorExpressionBase"; hasSemanticInterface;}
+:
+	expression<LEFT_OPERAND, LeftOperand, type="semantic">
+	(
+		OPERATOR_OR<OPERATION_SIGN, OperationSign>
+		|
+		OPERATOR_AND<OPERATION_SIGN, OperationSign>	
+		|
+		OPERATOR_DOLLAR<OPERATION_SIGN, OperationSign>	
+	)
+	expression<RIGHT_OPERAND, RightOperand, type="semantic">
+;
+// **********  Binary Operators Section End **********
+
+// **********  Dot Operators Section  **********
+memberAccessExpression  options { hasSemanticInterface; customInterface; customImpl; stubBase = "ReferenceExpressionBase";}
+ :
+	expression<QUALIFIER, Qualifier, type="semantic">
+	KEYWORD_DOT_OP<FSHARP_DOT, Dot>
+	valueReferenceExpression<REFERENCE_NAME, ReferenceName, type="semantic">
+;
+
+parenthesizedFieldValueExpression options { hasSemanticInterface;  stubBase = "OperatorExpressionBase";}
+ :
+	expression<LEFT_OPERAND, LeftOperand, type="semantic">
+	KEYWORD_DOT_OP<FSHARP_DOT, Dot>
+	KEYWORD_LPARENTH_OP<FSHARP_LPARENTH, LParenth>
+	expression<RIGHT_OPERAND, RightOperand, type="semantic">
+	KEYWORD_RPARENTH_OP<FSHARP_RPARENTH, RParenth>
+;
+
+bracketedFieldValueExpression options {  hasSemanticInterface; stubBase = "OperatorExpressionBase";}
+ :
+	expression<LEFT_OPERAND, LeftOperand, type="semantic">
+	KEYWORD_DOT_OP<FSHARP_DOT, Dot>
+	KEYWORD_LBRACKET_OP<FSHARP_LBRACKET, LBracket>
+	expression<RIGHT_OPERAND, RightOperand, type="semantic">
+	KEYWORD_RBRACKET_OP<FSHARP_RBRACKET, RBracket>		
+;
+// **********  Dot Operators Section End **********
+
+expressionBlock options {  hasSemanticInterface; stubBase = "ExpressionBase";}
+ :
+	KEYWORD_BEGIN<FSHARP_BEGIN, BeginKeyword>
+	expression<BLOCK, Block, type="semantic"> 
+	KEYWORD_END<FSHARP_END, EndKeyword>   
+;
+
+ifStatementExpression options { hasSemanticInterface; stubBase = "ExpressionBase";}
+ :
+	KEYWORD_IF<FSHARP_IF, IfKeyword>
+	expression<CONDITION, Condition, type="semantic">
+	KEYWORD_THEN<FSHARP_THEN, ThenKeyword>   
+	expression<THEN_STATEMENT, ThenStatement, type="semantic">
+	(
+		KEYWORD_ELSE<FSHARP_ELSE, ElseKeyword>
+		expression<ELSE_STATEMENT, ElseStatement, type="semantic">   
+	)?
+;
+ 
+whileStatementExpression options { hasSemanticInterface; stubBase = "ExpressionBase";}
+ :
+	KEYWORD_WHILE<FSHARP_WHILE, WhileKeyword>
+	expression<CONDITION, Condition, type="semantic">
+	KEYWORD_DO<FSHARP_DO, DoKeyword>   
+	expression<BODY, Body, type="semantic">
+	KEYWORD_DONE<FSHARP_DONE, DoneKeyword>   
+;
+
+forStatementExpression options {  hasSemanticInterface; customImpl; customInterface; stubBase = "ExpressionBase";}
+ :
+	KEYWORD_FOR<FSHARP_FOR, ForKeyword>
+	identifier<VARIABLE, LoopVariable>
+	KEYWORD_EQ_OP<FSHARP_EQ, Eq>
+	expression<LOWER_BOUND, LowerBound, type="semantic">
+	(
+		KEYWORD_TO<TO_KEYWORD, ToKeyword>
+		|
+		KEYWORD_DOWNTO<DOWNTO_KEYWORD, DowntoKeyword>
+	)
+	expression<UPPER_BOUND, UpperBound, type="semantic">
+	KEYWORD_DO<FSHARP_DO, DoKeyword>   
+	expression<BODY, Body, type="semantic">
+	KEYWORD_DONE<FSHARP_DONE, DoneKeyword>   	
+;
+
+funExpression options { hasSemanticInterface; stubBase = "ExpressionBase";}
+extras {
+  get { methodName="Condition" path=<funExpression:
+FUNCTION_DEFINITION/multipleMatching:
+CONDITION> interface="semantic" };
+  get { methodName="Parameters" path=<funExpression:
+FUNCTION_DEFINITION/multipleMatching:
+PARAMETER> interface="semantic" };
+  get { methodName="Target" path=<funExpression:
+FUNCTION_DEFINITION/multipleMatching:
+TARGET> interface="semantic" };
+}
+ :
+	KEYWORD_FUN<FSHARP_FUN, FunKeyword>
+	multipleMatching<FUNCTION_DEFINITION, FunctionDefinition, type="semantic">
+;
+
+multipleMatching options {hasSemanticInterface; customImpl; customInterface;}
+ :
+	(pattern<PARAMETER, Parameters, type="semantic">)+
+	multipleMatchingAux
+;
+
+private multipleMatchingAux
+ :
+   (
+ 		KEYWORD_WHEN<WHEN_KEYWORD, WhenKeyword>
+		expression<CONDITION, Condition, type="semantic">
+	)?
+	KEYWORD_RARROW_OP<FSHARP_RARROW, RArrow>
+	expression<TARGET, Target, type="semantic">		
+;
+
+functionExpression  options { stubBase = "ExpressionBase"; }
+ :
+	KEYWORD_FUNCTION<FUNCTION_KEYWORD, FunctionKeyword>
+	patternMatching<FUNCTION_DEFINITION, FunctionDefinition, type="semantic">
+;
+
+tryWithExpression options { hasSemanticInterface; stubBase = "ExpressionBase";}
+ :
+	!(#tryKW: KEYWORD_TRY)
+	!(#expression: expression)
+	tryWithExpressionAux[tryKW, expression]
+;
+
+private tryWithExpressionAux[KEYWORD_TRY tryKW, expression expression] options {}
+ :
+	&tryKW<FSHARP_TRY, TryKeyword>
+	&expression<EXPRESSION, Expression, type="semantic">
+	KEYWORD_WITH<FSHARP_WITH, WithKeyword>
+	patternMatching<PATTERN_MATCHING, PatternMatching, type="semantic">
+;
+
+tryFinallyExpression options { hasSemanticInterface; stubBase = "ExpressionBase";}
+ :
+	!(#tryKW: KEYWORD_TRY)
+	!(#expression: expression)
+	tryFinallyExpressionAux[tryKW, expression]
+;
+
+private tryFinallyExpressionAux[KEYWORD_TRY tryKW, expression expression] options {}
+ :
+	&tryKW<FSHARP_TRY, TryKeyword>
+	&expression<EXPRESSION, Expression, type="semantic">
+	KEYWORD_FINALLY<FSHARP_FINALLY, FinallyKeyword>
+	expression<FINALLY_EXPRESSION, FinallyExpression, type="semantic">
+;
+
+matchExpression options { hasSemanticInterface; stubBase = "ExpressionBase";}
+ :
+	KEYWORD_MATCH<FSHARP_MATCH, MatchKeyword>
+	expression<EXPRESSION, Expression, type="semantic">
+	KEYWORD_WITH<FSHARP_WITH, WithKeyword>
+	patternMatching<PATTERN_MATCHING, PatternMatching, type="semantic">
+;
+
+patternMatching  options { hasSemanticInterface; }
+ :
+	KEYWORD_OR_OP<FSHARP_OR, Or>?	
+	LIST matchClause<MATCH_CLAUSE, Clauses, type="semantic"> SEP KEYWORD_OR_OP<FSHARP_OR, Or>
+;
+
+errorhandling matchClause options {hasSemanticInterface; customImpl; customInterface;}
+ :
+	pattern<PATTERN, Pattern, type="semantic">
+	  (
+	  	 KEYWORD_WHEN<WHEN_KEYWORD, WhenKeyword>
+		 expression<CONDITION, Condition, type="semantic">
+	  )?
+	KEYWORD_RARROW_OP<FSHARP_RARROW, RArrow>
+	expression<TARGET, Target, type="semantic">
+;
+
+//Warning! Overriding in FSharpParser!!!...
+creationExpression options { hasSemanticInterface;  stubBase = "ExpressionBase";}
+ :
+	KEYWORD_NEW<NEW_KEYWORD, NewKeyword>
+	typeExpression<TYPE, CreatedType, type="semantic">
+	(
+		KEYWORD_LPARENTH_OP<FSHARP_LPARENTH, LParenth>
+		tupleExpression<ARGUMENT_LIST, ArgumentList, type="semantic">
+		KEYWORD_RPARENTH_OP<FSHARP_RPARENTH, RParenth>	
+	)?
+;
+
+assertExpression options { hasSemanticInterface; stubBase = "ExpressionBase"; }
+ :
+	KEYWORD_ASSERT<ASSERT_KEYWORD, AssertKeyword>
+	expression<EXPRESSION, Expression, type="semantic">
+;
+
+lazyExpression options { hasSemanticInterface; stubBase = "ExpressionBase"; }
+ :
+	KEYWORD_LAZY<LAZY_KEYWORD, LazyKeyword>
+	expression<EXPRESSION, Expression, type="semantic">
+;
+
+upcastExpression options { hasSemanticInterface; stubBase = "ExpressionBase"; }
+ :
+	KEYWORD_UPCAST<UPCAST_KEYWORD, UpcastKeyword>
+	expression<EXPRESSION, Expression, type="semantic">
+;
+
+downcastExpression options { hasSemanticInterface; stubBase = "ExpressionBase"; }
+ :
+	KEYWORD_DOWNCAST<DOWNCAST_KEYWORD, DowncastKeyword>
+	expression<EXPRESSION, Expression, type="semantic">
+;
+
+upcastExpressionToType options { hasSemanticInterface;
+stubBase = "ExpressionBase";  }
+ :
+	!(#lparenth: KEYWORD_LPARENTH_OP)
+	!(#expression: expression)
+	upcastExpressionToTypeAux[lparenth, expression]
+;
+
+private upcastExpressionToTypeAux[KEYWORD_LPARENTH_OP lparenth, expression expression] options {}
+ :
+	&lparenth<FSHARP_LPARENTH, LParenth>
+	&expression<EXPRESSION, Expression, type="semantic">
+	KEYWORD_COLONGT_OP<FSHARP_COLONGT, ColonGT>
+	typeExpression<TYPE, Type, type="semantic">
+	KEYWORD_RPARENTH_OP<FSHARP_RPARENTH, RParenth>	
+;
+
+downcastExpressionToType options { hasSemanticInterface; stubBase = "ExpressionBase"; }
+ :
+	!(#lparenth: KEYWORD_LPARENTH_OP)
+	!(#expression: expression)
+	downcastExpressionToTypeAux[lparenth, expression]
+;
+
+private downcastExpressionToTypeAux[KEYWORD_LPARENTH_OP lparenth, expression expression] options {}
+ :
+	&lparenth<FSHARP_LPARENTH, LParenth>
+	&expression<EXPRESSION, Expression, type="semantic">
+	KEYWORD_COLONQUESTGT_OP<FSHARP_COLONQUESTGT, ColonQuestGT>
+	typeExpression<TYPE, Type, type="semantic">
+	KEYWORD_RPARENTH_OP<FSHARP_RPARENTH, RParenth>	
+;
+
+typeTestExpression options { hasSemanticInterface; stubBase = "ExpressionBase"; }
+ :
+	!(#lparenth: KEYWORD_LPARENTH_OP)
+	!(#expression: expression)
+	typeTestExpressionAux[lparenth, expression]
+;
+
+private typeTestExpressionAux[KEYWORD_LPARENTH_OP lparenth, expression expression] options {}
+ :
+	&lparenth<FSHARP_LPARENTH, LParenth>
+	&expression<EXPRESSION, Expression, type="semantic">
+	KEYWORD_COLONQUEST_OP<FSHARP_COLONQUEST, ColonQuest>
+	typeExpression<TYPE, Type, type="semantic">
+	KEYWORD_RPARENTH_OP<FSHARP_RPARENTH, RParenth>	
+;
