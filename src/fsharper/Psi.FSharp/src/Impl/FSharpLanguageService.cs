@@ -1,9 +1,11 @@
-﻿using JetBrains.ReSharper.Psi.ExtensionsAPI.Caches2;
+﻿using System.Collections.Generic;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Caches2;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.ReSharper.Psi.FSharp.Parsing;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
+using JetBrains.Util;
 
 namespace JetBrains.ReSharper.Psi.FSharp.Impl
 {
@@ -29,7 +31,16 @@ namespace JetBrains.ReSharper.Psi.FSharp.Impl
 
     public override IParser CreateParser(ILexer lexer, IPsiModule module, IPsiSourceFile sourceFile)
     {
-      return null;
+      return CreateParser(lexer,
+                          module == null || sourceFile == null
+                            ? EmptyList<PreProcessingDirective>.InstanceList
+                            : sourceFile.Properties.GetDefines());
+    }
+
+    public IFSharpParser CreateParser(ILexer lexer, IEnumerable<PreProcessingDirective> defines)
+    {
+      var typedLexer = (lexer as ILexer<int>) ?? lexer.ToCachingLexer();
+      return new FSharpParser(typedLexer, defines);
     }
 
     public override bool IsFilteredNode(ITreeNode node)

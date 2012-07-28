@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\bindebug\</OutputPath>
     <DefineConstants>JET_MODE_ASSERT;DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -28,10 +28,11 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\..\bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\bin\JetBrains.ReSharper.Psi.FSharp.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -738,8 +739,10 @@
     <Compile Include="src\Parsing\FSharpLexer.cs" />
     <Compile Include="src\Parsing\FSharpLexerGenerated.cs" />
     <Compile Include="src\Parsing\FSharpLexerState.cs" />
+    <Compile Include="src\Parsing\FSharpParser.cs" />
     <Compile Include="src\Parsing\FSharpTokenType.cs" />
     <Compile Include="src\Parsing\FSharpTokenTypeGenerated.cs" />
+    <Compile Include="src\Parsing\IFSharpParser.cs" />
     <Compile Include="src\Tree\FSharpGenericToken.cs" />
     <Compile Include="src\Tree\FSharpTokenBase.cs" />
     <Compile Include="src\Tree\Identifier.cs" />
@@ -785,4 +788,9 @@
     <Copy SourceFiles="$(ReSharperSdkTools)\parserGen\Unicode.lex" DestinationFolder="$(MSBuildProjectDirectory)\obj" />
   </Target>
   <Import Project="$(ReSharperSdkTools)\MSBuild\JetBrains.Build.Platform.ThemedIconsConverter.Targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties DocumentXCommentEditorState="&lt;HtmlEditState&gt;&#xA;  &lt;Attributes&gt;&#xA;    &lt;Attribute key=&quot;dtscrollpos&quot; valuetype=&quot;integer&quot;&gt;0&lt;/Attribute&gt;&#xA;    &lt;Attribute key=&quot;inheritedMembers&quot; valuetype=&quot;string&quot;&gt;on&lt;/Attribute&gt;&#xA;    &lt;Attribute key=&quot;protectedMembers&quot; valuetype=&quot;string&quot;&gt;on&lt;/Attribute&gt;&#xA;    &lt;Attribute key=&quot;lang_VB&quot; valuetype=&quot;string&quot;&gt;on&lt;/Attribute&gt;&#xA;    &lt;Attribute key=&quot;lang_VBUsage&quot; valuetype=&quot;string&quot;&gt;on&lt;/Attribute&gt;&#xA;    &lt;Attribute key=&quot;lang_CS&quot; valuetype=&quot;string&quot;&gt;on&lt;/Attribute&gt;&#xA;    &lt;Attribute key=&quot;lang_CPP2005&quot; valuetype=&quot;string&quot;&gt;on&lt;/Attribute&gt;&#xA;    &lt;Attribute key=&quot;SyntaxGroup_SelectedTab&quot; valuetype=&quot;string&quot;&gt;SyntaxTab_VB&lt;/Attribute&gt;&#xA;  &lt;/Attributes&gt;&#xA;&lt;/HtmlEditState&gt;" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

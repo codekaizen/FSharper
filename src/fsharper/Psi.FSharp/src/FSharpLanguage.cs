@@ -2,6 +2,7 @@
 
 namespace JetBrains.ReSharper.Psi.FSharp
 {
+  /// <summary>The F# language. Where necessary, use the Instance field.</summary>
   [LanguageDefinition(Name)]
   public class FSharpLanguage : KnownLanguage
   {

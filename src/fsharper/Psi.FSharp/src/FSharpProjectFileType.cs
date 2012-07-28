@@ -11,9 +11,9 @@ namespace JetBrains.ReSharper.Psi.FSharp
     public static string FS_EXTENSION = ".fs";
     public static string FSI_EXTENSION = ".fsi";
     public static string ML_EXTENSION = ".ml";
-    private static string MLI_EXTENSION = ".mli";
-    private static string FSX_EXTENSION = ".fsx";
-    private static string FSSCRIPT_EXTENSION = ".fsscrtipt";
+    public static string MLI_EXTENSION = ".mli";
+    public static string FSX_EXTENSION = ".fsx";
+    public static string FSSCRIPT_EXTENSION = ".fsscrtipt";
 
     public new static readonly FSharpProjectFileType Instance;
 

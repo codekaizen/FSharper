@@ -29,7 +29,7 @@ namespace JetBrains.ReSharper.Psi.FSharp.Tree
       return new StringBuffer(GetText());
     }
 
-    public override ReSharper.Psi.PsiLanguageType Language
+    public override PsiLanguageType Language
     {
       get { return FSharpLanguage.Instance; }
     }

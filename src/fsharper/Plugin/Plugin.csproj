@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F1E965E4-33F5-45EE-8F02-4604B53CA5A2}</ProjectGuid>
+    <ProjectGuid>{F479FF4A-AB6E-4C2C-8478-9BDFA0424C0E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JetBrains.ReSharper.Daemon.FSharp</RootNamespace>
-    <AssemblyName>JetBrains.ReSharper.Daemon.FSharp</AssemblyName>
+    <RootNamespace>JetBrains.ReSharper.FSharp.Plugin</RootNamespace>
+    <AssemblyName>JetBrains.ReSharper.FSharp.Plugin</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -30,7 +30,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\..\bin\JetBrains.ReSharper.Daemon.FSharp.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -46,13 +45,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\Stages\FSharpDaemonStageBase.cs" />
+    <Compile Include="AboutAction.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Psi.FSharp\Psi.FSharp.csproj">
-      <Project>{E15F7683-DB67-47B9-A0DC-2B067B9EEB63}</Project>
-      <Name>Psi.FSharp</Name>
-    </ProjectReference>
+    <Content Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Actions.xml" />
   </ItemGroup>
   <PropertyGroup>
     <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v7.0</ReSharperSdkTargets>
