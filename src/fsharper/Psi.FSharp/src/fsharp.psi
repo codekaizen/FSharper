@@ -1,82 +1,39 @@
-options {
+options { 
   parserPackage="JetBrains.ReSharper.Psi.FSharp.Parsing";
-  "objectClassFQName"="System.Object";
-  
-  //CSharp    
-   "createTokenElementMethodFQName"="JetBrains.ReSharper.Psi.CSharp.Impl.Factory.createTokenElement";
-  
-  //FSharp
-  "tokenElementClassFQName"="JetBrains.ReSharper.Psi.ITokenNode";   
-  "psiElementVisitorClassFQName"="JetBrains.ReSharper.Psi.FSharp.TreeNodeVisitor";
-  customInterfacePackage="JetBrains.ReSharper.Psi.FSharp.Tree";
-  publicChildRolePrefix="FSHARP"; //if role name starts with that prefix, it MUST BE declared in  publicChildRoleClass class
-  publicChildRoleClass="JetBrains.ReSharper.Psi.FSharp.Impl.Tree.FSharpChildRole";
-
-  //standalone
-  
-  "treeElementClassFQName"="JetBrains.ReSharper.Psi.ExtensionsAPI.Tree.TreeElement";
-  "leafElementClassFQName"="JetBrains.ReSharper.Psi.Impl.Tree.FSharpLeafElement";
-  psiStubsBaseClass="JetBrains.ReSharper.Psi.FSharp.Impl.Tree.FSharpCompositeElement";
-  "visitMethodPrefix"="Visit";
-  "lexerClassName"="JetBrains.ReSharper.Lexing.ILexer";
-  "parserGenRuntimePackageName"="Impl.Parsing";
-
-  //shared
-  "psiElementClassFQName"="JetBrains.ReSharper.Psi.FSharp.Tree.IFSharpTreeNode";
-  "semanticPsiElementClassFQName"="JetBrains.ReSharper.Psi.FSharp.Tree.IFSharpElement";
-  "sourceInterfaceNameSuffix"="Node";
-  "tokenElementClassFQName"="JetBrains.ReSharper.Psi.ITokenNode";
-
-  //bugs
-  "compositeElementClassFQName"="aaaaaaaaaaaaaaaaaaaaJetBrains.ReSharper.Psi.Impl.Tree.CompositeElement";  
-  "unexpectedTokenClassFQName"="aaaaaaaaaaaaaaaaaaaaaParsing.UnexpectedToken";
-  "syntaxErrorClassFQName"="aaaaaaaaaaaaaaaaaaaaaaaaaParsing.SyntaxError";
-
-
-  //settings
-  parserPackage="JetBrains.ReSharper.Psi.FSharp";            //Parsing. is needed
   parserClassName="FSharpParserGenerated";
-  psiInterfacePackageName="JetBrains.ReSharper.Psi.FSharp";
-  psiStubsPackageName="JetBrains.ReSharper.Psi.FSharp.Impl.Tree";   
-  tokenClassName="JetBrains.ReSharper.Psi.FSharp.Impl.Tree.FSharpToken";
-  customImplPackage="JetBrains.ReSharper.Psi.FSharp.Impl.Tree";
-
-  "tokenTypeClassFQName"="JetBrains.ReSharper.Psi.FSharp.Impl.Lexing.FSharpTokenType";
-
-
-
-  //prefixes
+  psiInterfacePackageName="JetBrains.ReSharper.Psi.FSharp.Tree";
+  psiStubsPackageName="JetBrains.ReSharper.Psi.FSharp.Impl";
+  psiStubsBaseClass="FSharpCompositeElement";
   tokenTypePrefix="";
+  parserTargetSubdir="Gen/Psi";
+  psiInterfacesTargetSubdir="Gen/Psi/Tree";
+  psiStubsTargetSubdir="Gen/Psi/Tree/Impl";
   elementTypePrefix="";
-  "psiClassesPrefix"="";
-  "interfaceNamePrefix"="I";
-  "customImplSuffix"="";
-
-  //paths
-  parserTargetSubdir="parser/";
-  psiInterfacesTargetSubdir="Psi/";
-  psiStubsTargetSubdir="Psi/Impl";
-  testTargetSubdir="Psi/Tests/";
-
-  //visitors    
-  semanticVisitorClassName="ElementVisitor";
-  visitorSuperClassName="JetBrains.ReSharper.Psi.FSharp.Impl.Tree.FSharpTreeNodeVisitorBase";
-  hierarchicalSemanticVisitorClassName="HierarchicalElementVisitor";
   visitorClassName="TreeNodeVisitor";
-
-
+  visitorMethodSuffix="";
+  testTargetSubdir="Gen/Psi/Test/Psi";
   disableReflection;
   separateHierarchies;
-
+  "treeElementClassFQName"="JetBrains.ReSharper.Psi.ExtensionsAPI.Tree.TreeElement";
+  "compositeElementClassFQName"="PsiCompositeElement";
+  "psiElementVisitorClassFQName"="JetBrains.ReSharper.Psi.FSharp.Tree.TreeNodeVisitor";
+  "tokenTypeClassFQName"="JetBrains.ReSharper.Psi.FSharp.Parsing.PsiTokenType";
+  "visitMethodPrefix"="Visit";
+  "lexerClassName"="JetBrains.ReSharper.Psi.Parsing.ILexer";
+  "psiClassesPrefix"="";
+  "psiElementClassFQName"="JetBrains.ReSharper.Psi.FSharp.Tree.IPsiTreeNode";
+  customImplPackage="JetBrains.ReSharper.Psi.FSharp.Tree.Impl";
+  customInterfacePackage="JetBrains.ReSharper.Psi.FSharp.Tree";
+  "interfaceNamePrefix"="I"; 
+  "tokenElementClassFQName"="JetBrains.ReSharper.Psi.Tree.ITokenNode";   
+  "customImplSuffix"="";
+  "objectClassFQName"="System.Object";
   tokenBitsetThreshold=4;
-  //suppressVisitor;
-
+  elementTypeBaseClass="JetBrains.ReSharper.Psi.FSharp.Tree.PsiCompositeNodeType";
+  parserMessagesClass="JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages";
+  generateWorkingPsi;
 }
 
-
-//A.1 Basics
- 
-//A.1.0 Numbers
 
 private intConstant{ROLE, getter}
  :

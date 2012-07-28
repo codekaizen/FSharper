@@ -1,5 +1,4 @@
 using System;
-using ActiveMesa.R2P.FSharp.Psi.FSharp.Tree;
 
 namespace JetBrains.ReSharper.Psi.FSharp.Tree
 {

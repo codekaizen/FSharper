@@ -84,12 +84,12 @@ namespace JetBrains.ReSharper.Psi.FSharp.Parsing
 
     private class GenericTokenNodeType : FSharpTokenNodeType
     {
-      private readonly string presentation;
+      private readonly string representation;
 
-      public GenericTokenNodeType(string s, string presentation = null)
+      public GenericTokenNodeType(string s, string representation = null)
         : base(s)
       {
-        this.presentation = presentation;
+        this.representation = representation;
       }
 
       public override string TokenRepresentation
@@ -146,9 +146,54 @@ namespace JetBrains.ReSharper.Psi.FSharp.Parsing
       }
     }
 
-    private abstract class KeywordTokenNodeType : FSharpTokenNodeType
+    private class FixedTokenNodeType : GenericTokenNodeType
     {
-      protected KeywordTokenNodeType(string s) : base(s) { }
+      private readonly string representation;
+
+      public FixedTokenNodeType(string s, string representation = null) : base(s, representation)
+      {
+        this.representation = representation;
+      }
+
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new FixedTokenElement(this);
+      }
+
+      public override string TokenRepresentation
+      {
+        get { return representation; }
+      }
+    }
+
+    private class FixedTokenElement : FSharpTokenBase
+    {
+      private readonly FixedTokenNodeType keywordTokenNodeType;
+
+      public FixedTokenElement(FixedTokenNodeType keywordTokenNodeType)
+      {
+        this.keywordTokenNodeType = keywordTokenNodeType;
+      }
+
+      public override int GetTextLength()
+      {
+        return keywordTokenNodeType.TokenRepresentation.Length;
+      }
+
+      public override string GetText()
+      {
+        return keywordTokenNodeType.TokenRepresentation;
+      }
+
+      public override NodeType NodeType
+      {
+        get { return keywordTokenNodeType; }
+      }
+    }
+
+    private abstract class KeywordTokenNodeType : FixedTokenNodeType
+    {
+      public KeywordTokenNodeType(string s, string representation) : base(s, representation) { }
     }
 
     // parser skippable

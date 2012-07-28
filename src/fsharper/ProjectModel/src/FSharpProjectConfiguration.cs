@@ -1,4 +1,3 @@
-using JetBrains.ProjectModel;
 using JetBrains.ProjectModel.Impl.Build;
 
 namespace JetBrains.ProjectModel

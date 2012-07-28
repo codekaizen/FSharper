@@ -5,7 +5,7 @@ using JetBrains.ReSharper.Psi.FSharp.Parsing;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.Text;
 
-namespace ActiveMesa.R2P.FSharp.Psi.FSharp.Parsing
+namespace JetBrains.ReSharper.Psi.FSharp.Parsing
 {
   public partial class FSharpLexerGenerated : ILexer<FSharpLexerState>
   {

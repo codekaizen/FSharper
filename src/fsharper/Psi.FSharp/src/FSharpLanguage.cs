@@ -6,7 +6,7 @@ namespace JetBrains.ReSharper.Psi.FSharp
   public class FSharpLanguage : KnownLanguage
   {
     public new const string Name = "FSHARP";
-    public const string PresentableName = "F#";
+    public new const string PresentableName = "F#";
 
     [CanBeNull] public static readonly FSharpLanguage Instance;
     

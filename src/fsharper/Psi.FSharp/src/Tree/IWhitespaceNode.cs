@@ -1,7 +1,7 @@
 using System;
-using ActiveMesa.R2P.FSharp.Psi.FSharp.Tree;
 using JetBrains.Application;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
+using JetBrains.ReSharper.Psi.FSharp.Parsing;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;

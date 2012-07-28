@@ -6,7 +6,7 @@ namespace JetBrains.ReSharper.Psi.FSharp
   public class FSharpProjectFileType : KnownProjectFileType
   {
     public new const string Name = "FSHARP";
-    private static string PresentableName = "F#";
+    private new const string PresentableName = "F#";
 
     public static string FS_EXTENSION = ".fs";
     public static string FSI_EXTENSION = ".fsi";

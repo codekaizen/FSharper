@@ -1,11 +1,10 @@
 ﻿using System.Text;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
-using JetBrains.ReSharper.Psi.FSharp.Tree;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Text;
 
-namespace ActiveMesa.R2P.FSharp.Psi.FSharp.Tree
+namespace JetBrains.ReSharper.Psi.FSharp.Tree
 {
   public abstract class FSharpTokenBase : LeafElementBase, IFSharpTreeNode, ITokenNode
   {
@@ -28,6 +27,11 @@ namespace ActiveMesa.R2P.FSharp.Psi.FSharp.Tree
     public override IBuffer GetTextAsBuffer()
     {
       return new StringBuffer(GetText());
+    }
+
+    public override ReSharper.Psi.PsiLanguageType Language
+    {
+      get { return FSharpLanguage.Instance; }
     }
   }
 }

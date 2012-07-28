@@ -9,3 +9,2171 @@ using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.Text;
 using JetBrains.ReSharper.Psi.Parsing;
 
+namespace JetBrains.ReSharper.Psi.FSharp.Parsing
+{
+  public static partial class FSharpTokenType
+  {
+    #region ABSTRACT_KEYWORD
+    private class AbstractKeywordNodeType : KeywordTokenNodeType
+    {
+      public AbstractKeywordNodeType(): base ("ABSTRACT_KEYWORD", "abstract") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new AbstractKeywordTokenElement(this);
+      }
+    }
+    private class AbstractKeywordTokenElement : FixedTokenElement
+    {
+      public AbstractKeywordTokenElement(AbstractKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType ABSTRACT_KEYWORD = new AbstractKeywordNodeType();
+    #endregion
+    #region AND_KEYWORD
+    private class AndKeywordNodeType : KeywordTokenNodeType
+    {
+      public AndKeywordNodeType(): base ("AND_KEYWORD", "&&") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new AndKeywordTokenElement(this);
+      }
+    }
+    private class AndKeywordTokenElement : FixedTokenElement
+    {
+      public AndKeywordTokenElement(AndKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType AND_KEYWORD = new AndKeywordNodeType();
+    #endregion
+    #region AS_KEYWORD
+    private class AsKeywordNodeType : KeywordTokenNodeType
+    {
+      public AsKeywordNodeType(): base ("AS_KEYWORD", "as") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new AsKeywordTokenElement(this);
+      }
+    }
+    private class AsKeywordTokenElement : FixedTokenElement
+    {
+      public AsKeywordTokenElement(AsKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType AS_KEYWORD = new AsKeywordNodeType();
+    #endregion
+    #region ASSERT_KEYWORD
+    private class AssertKeywordNodeType : KeywordTokenNodeType
+    {
+      public AssertKeywordNodeType(): base ("ASSERT_KEYWORD", "assert") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new AssertKeywordTokenElement(this);
+      }
+    }
+    private class AssertKeywordTokenElement : FixedTokenElement
+    {
+      public AssertKeywordTokenElement(AssertKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType ASSERT_KEYWORD = new AssertKeywordNodeType();
+    #endregion
+    #region BASE_KEYWORD
+    private class BaseKeywordNodeType : KeywordTokenNodeType
+    {
+      public BaseKeywordNodeType(): base ("BASE_KEYWORD", "base") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new BaseKeywordTokenElement(this);
+      }
+    }
+    private class BaseKeywordTokenElement : FixedTokenElement
+    {
+      public BaseKeywordTokenElement(BaseKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType BASE_KEYWORD = new BaseKeywordNodeType();
+    #endregion
+    #region BEGIN_KEYWORD
+    private class BeginKeywordNodeType : KeywordTokenNodeType
+    {
+      public BeginKeywordNodeType(): base ("BEGIN_KEYWORD", "begin") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new BeginKeywordTokenElement(this);
+      }
+    }
+    private class BeginKeywordTokenElement : FixedTokenElement
+    {
+      public BeginKeywordTokenElement(BeginKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType BEGIN_KEYWORD = new BeginKeywordNodeType();
+    #endregion
+    #region CLASS_KEYWORD
+    private class ClassKeywordNodeType : KeywordTokenNodeType
+    {
+      public ClassKeywordNodeType(): base ("CLASS_KEYWORD", "class") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ClassKeywordTokenElement(this);
+      }
+    }
+    private class ClassKeywordTokenElement : FixedTokenElement
+    {
+      public ClassKeywordTokenElement(ClassKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType CLASS_KEYWORD = new ClassKeywordNodeType();
+    #endregion
+    #region DEFAULT_KEYWORD
+    private class DefaultKeywordNodeType : KeywordTokenNodeType
+    {
+      public DefaultKeywordNodeType(): base ("DEFAULT_KEYWORD", "default") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new DefaultKeywordTokenElement(this);
+      }
+    }
+    private class DefaultKeywordTokenElement : FixedTokenElement
+    {
+      public DefaultKeywordTokenElement(DefaultKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType DEFAULT_KEYWORD = new DefaultKeywordNodeType();
+    #endregion
+    #region DELEGATE_KEYWORD
+    private class DelegateKeywordNodeType : KeywordTokenNodeType
+    {
+      public DelegateKeywordNodeType(): base ("DELEGATE_KEYWORD", "delegate") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new DelegateKeywordTokenElement(this);
+      }
+    }
+    private class DelegateKeywordTokenElement : FixedTokenElement
+    {
+      public DelegateKeywordTokenElement(DelegateKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType DELEGATE_KEYWORD = new DelegateKeywordNodeType();
+    #endregion
+    #region DO_KEYWORD
+    private class DoKeywordNodeType : KeywordTokenNodeType
+    {
+      public DoKeywordNodeType(): base ("DO_KEYWORD", "do") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new DoKeywordTokenElement(this);
+      }
+    }
+    private class DoKeywordTokenElement : FixedTokenElement
+    {
+      public DoKeywordTokenElement(DoKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType DO_KEYWORD = new DoKeywordNodeType();
+    #endregion
+    #region DONE_KEYWORD
+    private class DoneKeywordNodeType : KeywordTokenNodeType
+    {
+      public DoneKeywordNodeType(): base ("DONE_KEYWORD", "done") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new DoneKeywordTokenElement(this);
+      }
+    }
+    private class DoneKeywordTokenElement : FixedTokenElement
+    {
+      public DoneKeywordTokenElement(DoneKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType DONE_KEYWORD = new DoneKeywordNodeType();
+    #endregion
+    #region DOWNCAST_KEYWORD
+    private class DowncastKeywordNodeType : KeywordTokenNodeType
+    {
+      public DowncastKeywordNodeType(): base ("DOWNCAST_KEYWORD", ":?>") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new DowncastKeywordTokenElement(this);
+      }
+    }
+    private class DowncastKeywordTokenElement : FixedTokenElement
+    {
+      public DowncastKeywordTokenElement(DowncastKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType DOWNCAST_KEYWORD = new DowncastKeywordNodeType();
+    #endregion
+    #region DOWNTO_KEYWORD
+    private class DowntoKeywordNodeType : KeywordTokenNodeType
+    {
+      public DowntoKeywordNodeType(): base ("DOWNTO_KEYWORD", "downto") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new DowntoKeywordTokenElement(this);
+      }
+    }
+    private class DowntoKeywordTokenElement : FixedTokenElement
+    {
+      public DowntoKeywordTokenElement(DowntoKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType DOWNTO_KEYWORD = new DowntoKeywordNodeType();
+    #endregion
+    #region ELIF_KEYWORD
+    private class ElifKeywordNodeType : KeywordTokenNodeType
+    {
+      public ElifKeywordNodeType(): base ("ELIF_KEYWORD", "elif") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ElifKeywordTokenElement(this);
+      }
+    }
+    private class ElifKeywordTokenElement : FixedTokenElement
+    {
+      public ElifKeywordTokenElement(ElifKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType ELIF_KEYWORD = new ElifKeywordNodeType();
+    #endregion
+    #region ELSE_KEYWORD
+    private class ElseKeywordNodeType : KeywordTokenNodeType
+    {
+      public ElseKeywordNodeType(): base ("ELSE_KEYWORD", "else") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ElseKeywordTokenElement(this);
+      }
+    }
+    private class ElseKeywordTokenElement : FixedTokenElement
+    {
+      public ElseKeywordTokenElement(ElseKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType ELSE_KEYWORD = new ElseKeywordNodeType();
+    #endregion
+    #region END_KEYWORD
+    private class EndKeywordNodeType : KeywordTokenNodeType
+    {
+      public EndKeywordNodeType(): base ("END_KEYWORD", "end") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new EndKeywordTokenElement(this);
+      }
+    }
+    private class EndKeywordTokenElement : FixedTokenElement
+    {
+      public EndKeywordTokenElement(EndKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType END_KEYWORD = new EndKeywordNodeType();
+    #endregion
+    #region EXCEPTION_KEYWORD
+    private class ExceptionKeywordNodeType : KeywordTokenNodeType
+    {
+      public ExceptionKeywordNodeType(): base ("EXCEPTION_KEYWORD", "exception") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ExceptionKeywordTokenElement(this);
+      }
+    }
+    private class ExceptionKeywordTokenElement : FixedTokenElement
+    {
+      public ExceptionKeywordTokenElement(ExceptionKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType EXCEPTION_KEYWORD = new ExceptionKeywordNodeType();
+    #endregion
+    #region EXTERN_KEYWORD
+    private class ExternKeywordNodeType : KeywordTokenNodeType
+    {
+      public ExternKeywordNodeType(): base ("EXTERN_KEYWORD", "extern") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ExternKeywordTokenElement(this);
+      }
+    }
+    private class ExternKeywordTokenElement : FixedTokenElement
+    {
+      public ExternKeywordTokenElement(ExternKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType EXTERN_KEYWORD = new ExternKeywordNodeType();
+    #endregion
+    #region FALSE_KEYWORD
+    private class FalseKeywordNodeType : KeywordTokenNodeType
+    {
+      public FalseKeywordNodeType(): base ("FALSE_KEYWORD", "false") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new FalseKeywordTokenElement(this);
+      }
+    }
+    private class FalseKeywordTokenElement : FixedTokenElement
+    {
+      public FalseKeywordTokenElement(FalseKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType FALSE_KEYWORD = new FalseKeywordNodeType();
+    #endregion
+    #region FINALLY_KEYWORD
+    private class FinallyKeywordNodeType : KeywordTokenNodeType
+    {
+      public FinallyKeywordNodeType(): base ("FINALLY_KEYWORD", "finally") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new FinallyKeywordTokenElement(this);
+      }
+    }
+    private class FinallyKeywordTokenElement : FixedTokenElement
+    {
+      public FinallyKeywordTokenElement(FinallyKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType FINALLY_KEYWORD = new FinallyKeywordNodeType();
+    #endregion
+    #region FOR_KEYWORD
+    private class ForKeywordNodeType : KeywordTokenNodeType
+    {
+      public ForKeywordNodeType(): base ("FOR_KEYWORD", "for") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ForKeywordTokenElement(this);
+      }
+    }
+    private class ForKeywordTokenElement : FixedTokenElement
+    {
+      public ForKeywordTokenElement(ForKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType FOR_KEYWORD = new ForKeywordNodeType();
+    #endregion
+    #region FUN_KEYWORD
+    private class FunKeywordNodeType : KeywordTokenNodeType
+    {
+      public FunKeywordNodeType(): base ("FUN_KEYWORD", "fun") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new FunKeywordTokenElement(this);
+      }
+    }
+    private class FunKeywordTokenElement : FixedTokenElement
+    {
+      public FunKeywordTokenElement(FunKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType FUN_KEYWORD = new FunKeywordNodeType();
+    #endregion
+    #region FUNCTION_KEYWORD
+    private class FunctionKeywordNodeType : KeywordTokenNodeType
+    {
+      public FunctionKeywordNodeType(): base ("FUNCTION_KEYWORD", "function") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new FunctionKeywordTokenElement(this);
+      }
+    }
+    private class FunctionKeywordTokenElement : FixedTokenElement
+    {
+      public FunctionKeywordTokenElement(FunctionKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType FUNCTION_KEYWORD = new FunctionKeywordNodeType();
+    #endregion
+    #region GLOBAL_KEYWORD
+    private class GlobalKeywordNodeType : KeywordTokenNodeType
+    {
+      public GlobalKeywordNodeType(): base ("GLOBAL_KEYWORD", "global") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new GlobalKeywordTokenElement(this);
+      }
+    }
+    private class GlobalKeywordTokenElement : FixedTokenElement
+    {
+      public GlobalKeywordTokenElement(GlobalKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType GLOBAL_KEYWORD = new GlobalKeywordNodeType();
+    #endregion
+    #region IF_KEYWORD
+    private class IfKeywordNodeType : KeywordTokenNodeType
+    {
+      public IfKeywordNodeType(): base ("IF_KEYWORD", "if") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new IfKeywordTokenElement(this);
+      }
+    }
+    private class IfKeywordTokenElement : FixedTokenElement
+    {
+      public IfKeywordTokenElement(IfKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType IF_KEYWORD = new IfKeywordNodeType();
+    #endregion
+    #region IN_KEYWORD
+    private class InKeywordNodeType : KeywordTokenNodeType
+    {
+      public InKeywordNodeType(): base ("IN_KEYWORD", "in") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new InKeywordTokenElement(this);
+      }
+    }
+    private class InKeywordTokenElement : FixedTokenElement
+    {
+      public InKeywordTokenElement(InKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType IN_KEYWORD = new InKeywordNodeType();
+    #endregion
+    #region INHERIT_KEYWORD
+    private class InheritKeywordNodeType : KeywordTokenNodeType
+    {
+      public InheritKeywordNodeType(): base ("INHERIT_KEYWORD", "inherit") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new InheritKeywordTokenElement(this);
+      }
+    }
+    private class InheritKeywordTokenElement : FixedTokenElement
+    {
+      public InheritKeywordTokenElement(InheritKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType INHERIT_KEYWORD = new InheritKeywordNodeType();
+    #endregion
+    #region INLINE_KEYWORD
+    private class InlineKeywordNodeType : KeywordTokenNodeType
+    {
+      public InlineKeywordNodeType(): base ("INLINE_KEYWORD", "inline") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new InlineKeywordTokenElement(this);
+      }
+    }
+    private class InlineKeywordTokenElement : FixedTokenElement
+    {
+      public InlineKeywordTokenElement(InlineKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType INLINE_KEYWORD = new InlineKeywordNodeType();
+    #endregion
+    #region INTERFACE_KEYWORD
+    private class InterfaceKeywordNodeType : KeywordTokenNodeType
+    {
+      public InterfaceKeywordNodeType(): base ("INTERFACE_KEYWORD", "interface") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new InterfaceKeywordTokenElement(this);
+      }
+    }
+    private class InterfaceKeywordTokenElement : FixedTokenElement
+    {
+      public InterfaceKeywordTokenElement(InterfaceKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType INTERFACE_KEYWORD = new InterfaceKeywordNodeType();
+    #endregion
+    #region INTERNAL_KEYWORD
+    private class InternalKeywordNodeType : KeywordTokenNodeType
+    {
+      public InternalKeywordNodeType(): base ("INTERNAL_KEYWORD", "internal") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new InternalKeywordTokenElement(this);
+      }
+    }
+    private class InternalKeywordTokenElement : FixedTokenElement
+    {
+      public InternalKeywordTokenElement(InternalKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType INTERNAL_KEYWORD = new InternalKeywordNodeType();
+    #endregion
+    #region LAZY_KEYWORD
+    private class LazyKeywordNodeType : KeywordTokenNodeType
+    {
+      public LazyKeywordNodeType(): base ("LAZY_KEYWORD", "lazy") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new LazyKeywordTokenElement(this);
+      }
+    }
+    private class LazyKeywordTokenElement : FixedTokenElement
+    {
+      public LazyKeywordTokenElement(LazyKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType LAZY_KEYWORD = new LazyKeywordNodeType();
+    #endregion
+    #region LET_KEYWORD
+    private class LetKeywordNodeType : KeywordTokenNodeType
+    {
+      public LetKeywordNodeType(): base ("LET_KEYWORD", "let") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new LetKeywordTokenElement(this);
+      }
+    }
+    private class LetKeywordTokenElement : FixedTokenElement
+    {
+      public LetKeywordTokenElement(LetKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType LET_KEYWORD = new LetKeywordNodeType();
+    #endregion
+    #region MATCH_KEYWORD
+    private class MatchKeywordNodeType : KeywordTokenNodeType
+    {
+      public MatchKeywordNodeType(): base ("MATCH_KEYWORD", "match") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new MatchKeywordTokenElement(this);
+      }
+    }
+    private class MatchKeywordTokenElement : FixedTokenElement
+    {
+      public MatchKeywordTokenElement(MatchKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType MATCH_KEYWORD = new MatchKeywordNodeType();
+    #endregion
+    #region MEMBER_KEYWORD
+    private class MemberKeywordNodeType : KeywordTokenNodeType
+    {
+      public MemberKeywordNodeType(): base ("MEMBER_KEYWORD", "member") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new MemberKeywordTokenElement(this);
+      }
+    }
+    private class MemberKeywordTokenElement : FixedTokenElement
+    {
+      public MemberKeywordTokenElement(MemberKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType MEMBER_KEYWORD = new MemberKeywordNodeType();
+    #endregion
+    #region MODULE_KEYWORD
+    private class ModuleKeywordNodeType : KeywordTokenNodeType
+    {
+      public ModuleKeywordNodeType(): base ("MODULE_KEYWORD", "module") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ModuleKeywordTokenElement(this);
+      }
+    }
+    private class ModuleKeywordTokenElement : FixedTokenElement
+    {
+      public ModuleKeywordTokenElement(ModuleKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType MODULE_KEYWORD = new ModuleKeywordNodeType();
+    #endregion
+    #region MUTABLE_KEYWORD
+    private class MutableKeywordNodeType : KeywordTokenNodeType
+    {
+      public MutableKeywordNodeType(): base ("MUTABLE_KEYWORD", "mutable") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new MutableKeywordTokenElement(this);
+      }
+    }
+    private class MutableKeywordTokenElement : FixedTokenElement
+    {
+      public MutableKeywordTokenElement(MutableKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType MUTABLE_KEYWORD = new MutableKeywordNodeType();
+    #endregion
+    #region NAMESPACE_KEYWORD
+    private class NamespaceKeywordNodeType : KeywordTokenNodeType
+    {
+      public NamespaceKeywordNodeType(): base ("NAMESPACE_KEYWORD", "namespace") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new NamespaceKeywordTokenElement(this);
+      }
+    }
+    private class NamespaceKeywordTokenElement : FixedTokenElement
+    {
+      public NamespaceKeywordTokenElement(NamespaceKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType NAMESPACE_KEYWORD = new NamespaceKeywordNodeType();
+    #endregion
+    #region NEW_KEYWORD
+    private class NewKeywordNodeType : KeywordTokenNodeType
+    {
+      public NewKeywordNodeType(): base ("NEW_KEYWORD", "new") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new NewKeywordTokenElement(this);
+      }
+    }
+    private class NewKeywordTokenElement : FixedTokenElement
+    {
+      public NewKeywordTokenElement(NewKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType NEW_KEYWORD = new NewKeywordNodeType();
+    #endregion
+    #region NOT_KEYWORD
+    private class NotKeywordNodeType : KeywordTokenNodeType
+    {
+      public NotKeywordNodeType(): base ("NOT_KEYWORD", "not") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new NotKeywordTokenElement(this);
+      }
+    }
+    private class NotKeywordTokenElement : FixedTokenElement
+    {
+      public NotKeywordTokenElement(NotKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType NOT_KEYWORD = new NotKeywordNodeType();
+    #endregion
+    #region NULL_KEYWORD
+    private class NullKeywordNodeType : KeywordTokenNodeType
+    {
+      public NullKeywordNodeType(): base ("NULL_KEYWORD", "null") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new NullKeywordTokenElement(this);
+      }
+    }
+    private class NullKeywordTokenElement : FixedTokenElement
+    {
+      public NullKeywordTokenElement(NullKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType NULL_KEYWORD = new NullKeywordNodeType();
+    #endregion
+    #region OF_KEYWORD
+    private class OfKeywordNodeType : KeywordTokenNodeType
+    {
+      public OfKeywordNodeType(): base ("OF_KEYWORD", "of") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new OfKeywordTokenElement(this);
+      }
+    }
+    private class OfKeywordTokenElement : FixedTokenElement
+    {
+      public OfKeywordTokenElement(OfKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType OF_KEYWORD = new OfKeywordNodeType();
+    #endregion
+    #region OPEN_KEYWORD
+    private class OpenKeywordNodeType : KeywordTokenNodeType
+    {
+      public OpenKeywordNodeType(): base ("OPEN_KEYWORD", "open") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new OpenKeywordTokenElement(this);
+      }
+    }
+    private class OpenKeywordTokenElement : FixedTokenElement
+    {
+      public OpenKeywordTokenElement(OpenKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType OPEN_KEYWORD = new OpenKeywordNodeType();
+    #endregion
+    #region OR_KEYWORD
+    private class OrKeywordNodeType : KeywordTokenNodeType
+    {
+      public OrKeywordNodeType(): base ("OR_KEYWORD", "or") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new OrKeywordTokenElement(this);
+      }
+    }
+    private class OrKeywordTokenElement : FixedTokenElement
+    {
+      public OrKeywordTokenElement(OrKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType OR_KEYWORD = new OrKeywordNodeType();
+    #endregion
+    #region OVERRIDE_KEYWORD
+    private class OverrideKeywordNodeType : KeywordTokenNodeType
+    {
+      public OverrideKeywordNodeType(): base ("OVERRIDE_KEYWORD", "override") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new OverrideKeywordTokenElement(this);
+      }
+    }
+    private class OverrideKeywordTokenElement : FixedTokenElement
+    {
+      public OverrideKeywordTokenElement(OverrideKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType OVERRIDE_KEYWORD = new OverrideKeywordNodeType();
+    #endregion
+    #region PRIVATE_KEYWORD
+    private class PrivateKeywordNodeType : KeywordTokenNodeType
+    {
+      public PrivateKeywordNodeType(): base ("PRIVATE_KEYWORD", "private") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new PrivateKeywordTokenElement(this);
+      }
+    }
+    private class PrivateKeywordTokenElement : FixedTokenElement
+    {
+      public PrivateKeywordTokenElement(PrivateKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType PRIVATE_KEYWORD = new PrivateKeywordNodeType();
+    #endregion
+    #region PUBLIC_KEYWORD
+    private class PublicKeywordNodeType : KeywordTokenNodeType
+    {
+      public PublicKeywordNodeType(): base ("PUBLIC_KEYWORD", "public") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new PublicKeywordTokenElement(this);
+      }
+    }
+    private class PublicKeywordTokenElement : FixedTokenElement
+    {
+      public PublicKeywordTokenElement(PublicKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType PUBLIC_KEYWORD = new PublicKeywordNodeType();
+    #endregion
+    #region REC_KEYWORD
+    private class RecKeywordNodeType : KeywordTokenNodeType
+    {
+      public RecKeywordNodeType(): base ("REC_KEYWORD", "rec") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new RecKeywordTokenElement(this);
+      }
+    }
+    private class RecKeywordTokenElement : FixedTokenElement
+    {
+      public RecKeywordTokenElement(RecKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType REC_KEYWORD = new RecKeywordNodeType();
+    #endregion
+    #region RETURN_KEYWORD
+    private class ReturnKeywordNodeType : KeywordTokenNodeType
+    {
+      public ReturnKeywordNodeType(): base ("RETURN_KEYWORD", "return") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ReturnKeywordTokenElement(this);
+      }
+    }
+    private class ReturnKeywordTokenElement : FixedTokenElement
+    {
+      public ReturnKeywordTokenElement(ReturnKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType RETURN_KEYWORD = new ReturnKeywordNodeType();
+    #endregion
+    #region STATIC_KEYWORD
+    private class StaticKeywordNodeType : KeywordTokenNodeType
+    {
+      public StaticKeywordNodeType(): base ("STATIC_KEYWORD", "static") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new StaticKeywordTokenElement(this);
+      }
+    }
+    private class StaticKeywordTokenElement : FixedTokenElement
+    {
+      public StaticKeywordTokenElement(StaticKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType STATIC_KEYWORD = new StaticKeywordNodeType();
+    #endregion
+    #region STRUCT_KEYWORD
+    private class StructKeywordNodeType : KeywordTokenNodeType
+    {
+      public StructKeywordNodeType(): base ("STRUCT_KEYWORD", "struct") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new StructKeywordTokenElement(this);
+      }
+    }
+    private class StructKeywordTokenElement : FixedTokenElement
+    {
+      public StructKeywordTokenElement(StructKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType STRUCT_KEYWORD = new StructKeywordNodeType();
+    #endregion
+    #region THEN_KEYWORD
+    private class ThenKeywordNodeType : KeywordTokenNodeType
+    {
+      public ThenKeywordNodeType(): base ("THEN_KEYWORD", "then") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ThenKeywordTokenElement(this);
+      }
+    }
+    private class ThenKeywordTokenElement : FixedTokenElement
+    {
+      public ThenKeywordTokenElement(ThenKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType THEN_KEYWORD = new ThenKeywordNodeType();
+    #endregion
+    #region TO_KEYWORD
+    private class ToKeywordNodeType : KeywordTokenNodeType
+    {
+      public ToKeywordNodeType(): base ("TO_KEYWORD", "to") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ToKeywordTokenElement(this);
+      }
+    }
+    private class ToKeywordTokenElement : FixedTokenElement
+    {
+      public ToKeywordTokenElement(ToKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType TO_KEYWORD = new ToKeywordNodeType();
+    #endregion
+    #region TRUE_KEYWORD
+    private class TrueKeywordNodeType : KeywordTokenNodeType
+    {
+      public TrueKeywordNodeType(): base ("TRUE_KEYWORD", "true") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new TrueKeywordTokenElement(this);
+      }
+    }
+    private class TrueKeywordTokenElement : FixedTokenElement
+    {
+      public TrueKeywordTokenElement(TrueKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType TRUE_KEYWORD = new TrueKeywordNodeType();
+    #endregion
+    #region TRY_KEYWORD
+    private class TryKeywordNodeType : KeywordTokenNodeType
+    {
+      public TryKeywordNodeType(): base ("TRY_KEYWORD", "try") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new TryKeywordTokenElement(this);
+      }
+    }
+    private class TryKeywordTokenElement : FixedTokenElement
+    {
+      public TryKeywordTokenElement(TryKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType TRY_KEYWORD = new TryKeywordNodeType();
+    #endregion
+    #region TYPE_KEYWORD
+    private class TypeKeywordNodeType : KeywordTokenNodeType
+    {
+      public TypeKeywordNodeType(): base ("TYPE_KEYWORD", "type") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new TypeKeywordTokenElement(this);
+      }
+    }
+    private class TypeKeywordTokenElement : FixedTokenElement
+    {
+      public TypeKeywordTokenElement(TypeKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType TYPE_KEYWORD = new TypeKeywordNodeType();
+    #endregion
+    #region UPCAST_KEYWORD
+    private class UpcastKeywordNodeType : KeywordTokenNodeType
+    {
+      public UpcastKeywordNodeType(): base ("UPCAST_KEYWORD", "upcast") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new UpcastKeywordTokenElement(this);
+      }
+    }
+    private class UpcastKeywordTokenElement : FixedTokenElement
+    {
+      public UpcastKeywordTokenElement(UpcastKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType UPCAST_KEYWORD = new UpcastKeywordNodeType();
+    #endregion
+    #region USE_KEYWORD
+    private class UseKeywordNodeType : KeywordTokenNodeType
+    {
+      public UseKeywordNodeType(): base ("USE_KEYWORD", "use") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new UseKeywordTokenElement(this);
+      }
+    }
+    private class UseKeywordTokenElement : FixedTokenElement
+    {
+      public UseKeywordTokenElement(UseKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType USE_KEYWORD = new UseKeywordNodeType();
+    #endregion
+    #region VAL_KEYWORD
+    private class ValKeywordNodeType : KeywordTokenNodeType
+    {
+      public ValKeywordNodeType(): base ("VAL_KEYWORD", "val") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ValKeywordTokenElement(this);
+      }
+    }
+    private class ValKeywordTokenElement : FixedTokenElement
+    {
+      public ValKeywordTokenElement(ValKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType VAL_KEYWORD = new ValKeywordNodeType();
+    #endregion
+    #region VOID_KEYWORD
+    private class VoidKeywordNodeType : KeywordTokenNodeType
+    {
+      public VoidKeywordNodeType(): base ("VOID_KEYWORD", "void") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new VoidKeywordTokenElement(this);
+      }
+    }
+    private class VoidKeywordTokenElement : FixedTokenElement
+    {
+      public VoidKeywordTokenElement(VoidKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType VOID_KEYWORD = new VoidKeywordNodeType();
+    #endregion
+    #region WHEN_KEYWORD
+    private class WhenKeywordNodeType : KeywordTokenNodeType
+    {
+      public WhenKeywordNodeType(): base ("WHEN_KEYWORD", "when") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new WhenKeywordTokenElement(this);
+      }
+    }
+    private class WhenKeywordTokenElement : FixedTokenElement
+    {
+      public WhenKeywordTokenElement(WhenKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType WHEN_KEYWORD = new WhenKeywordNodeType();
+    #endregion
+    #region WHILE_KEYWORD
+    private class WhileKeywordNodeType : KeywordTokenNodeType
+    {
+      public WhileKeywordNodeType(): base ("WHILE_KEYWORD", "while") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new WhileKeywordTokenElement(this);
+      }
+    }
+    private class WhileKeywordTokenElement : FixedTokenElement
+    {
+      public WhileKeywordTokenElement(WhileKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType WHILE_KEYWORD = new WhileKeywordNodeType();
+    #endregion
+    #region WITH_KEYWORD
+    private class WithKeywordNodeType : KeywordTokenNodeType
+    {
+      public WithKeywordNodeType(): base ("WITH_KEYWORD", "with") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new WithKeywordTokenElement(this);
+      }
+    }
+    private class WithKeywordTokenElement : FixedTokenElement
+    {
+      public WithKeywordTokenElement(WithKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType WITH_KEYWORD = new WithKeywordNodeType();
+    #endregion
+    #region YIELD_KEYWORD
+    private class YieldKeywordNodeType : KeywordTokenNodeType
+    {
+      public YieldKeywordNodeType(): base ("YIELD_KEYWORD", "yield") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new YieldKeywordTokenElement(this);
+      }
+    }
+    private class YieldKeywordTokenElement : FixedTokenElement
+    {
+      public YieldKeywordTokenElement(YieldKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType YIELD_KEYWORD = new YieldKeywordNodeType();
+    #endregion
+    #region ASR_ML_KEYWORD
+    private class AsrMlKeywordNodeType : KeywordTokenNodeType
+    {
+      public AsrMlKeywordNodeType(): base ("ASR_ML_KEYWORD", "asr") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new AsrMlKeywordTokenElement(this);
+      }
+    }
+    private class AsrMlKeywordTokenElement : FixedTokenElement
+    {
+      public AsrMlKeywordTokenElement(AsrMlKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType ASR_ML_KEYWORD = new AsrMlKeywordNodeType();
+    #endregion
+    #region LAND_ML_KEYWORD
+    private class LandMlKeywordNodeType : KeywordTokenNodeType
+    {
+      public LandMlKeywordNodeType(): base ("LAND_ML_KEYWORD", "land") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new LandMlKeywordTokenElement(this);
+      }
+    }
+    private class LandMlKeywordTokenElement : FixedTokenElement
+    {
+      public LandMlKeywordTokenElement(LandMlKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType LAND_ML_KEYWORD = new LandMlKeywordNodeType();
+    #endregion
+    #region LOR_ML_KEYWORD
+    private class LorMlKeywordNodeType : KeywordTokenNodeType
+    {
+      public LorMlKeywordNodeType(): base ("LOR_ML_KEYWORD", "lor") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new LorMlKeywordTokenElement(this);
+      }
+    }
+    private class LorMlKeywordTokenElement : FixedTokenElement
+    {
+      public LorMlKeywordTokenElement(LorMlKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType LOR_ML_KEYWORD = new LorMlKeywordNodeType();
+    #endregion
+    #region LSL_ML_KEYWORD
+    private class LslMlKeywordNodeType : KeywordTokenNodeType
+    {
+      public LslMlKeywordNodeType(): base ("LSL_ML_KEYWORD", "lsl") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new LslMlKeywordTokenElement(this);
+      }
+    }
+    private class LslMlKeywordTokenElement : FixedTokenElement
+    {
+      public LslMlKeywordTokenElement(LslMlKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType LSL_ML_KEYWORD = new LslMlKeywordNodeType();
+    #endregion
+    #region LSR_ML_KEYWORD
+    private class LsrMlKeywordNodeType : KeywordTokenNodeType
+    {
+      public LsrMlKeywordNodeType(): base ("LSR_ML_KEYWORD", "lsr") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new LsrMlKeywordTokenElement(this);
+      }
+    }
+    private class LsrMlKeywordTokenElement : FixedTokenElement
+    {
+      public LsrMlKeywordTokenElement(LsrMlKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType LSR_ML_KEYWORD = new LsrMlKeywordNodeType();
+    #endregion
+    #region LXOR_ML_KEYWORD
+    private class LxorMlKeywordNodeType : KeywordTokenNodeType
+    {
+      public LxorMlKeywordNodeType(): base ("LXOR_ML_KEYWORD", "lxor") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new LxorMlKeywordTokenElement(this);
+      }
+    }
+    private class LxorMlKeywordTokenElement : FixedTokenElement
+    {
+      public LxorMlKeywordTokenElement(LxorMlKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType LXOR_ML_KEYWORD = new LxorMlKeywordNodeType();
+    #endregion
+    #region MOD_ML_KEYWORD
+    private class ModMlKeywordNodeType : KeywordTokenNodeType
+    {
+      public ModMlKeywordNodeType(): base ("MOD_ML_KEYWORD", "mod") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ModMlKeywordTokenElement(this);
+      }
+    }
+    private class ModMlKeywordTokenElement : FixedTokenElement
+    {
+      public ModMlKeywordTokenElement(ModMlKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType MOD_ML_KEYWORD = new ModMlKeywordNodeType();
+    #endregion
+    #region SIG_ML_KEYWORD
+    private class SigMlKeywordNodeType : KeywordTokenNodeType
+    {
+      public SigMlKeywordNodeType(): base ("SIG_ML_KEYWORD", "sig") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new SigMlKeywordTokenElement(this);
+      }
+    }
+    private class SigMlKeywordTokenElement : FixedTokenElement
+    {
+      public SigMlKeywordTokenElement(SigMlKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType SIG_ML_KEYWORD = new SigMlKeywordNodeType();
+    #endregion
+    #region ATOMIC_RESERVED_KEYWORD
+    private class AtomicReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public AtomicReservedKeywordNodeType(): base ("ATOMIC_RESERVED_KEYWORD", "atomic") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new AtomicReservedKeywordTokenElement(this);
+      }
+    }
+    private class AtomicReservedKeywordTokenElement : FixedTokenElement
+    {
+      public AtomicReservedKeywordTokenElement(AtomicReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType ATOMIC_RESERVED_KEYWORD = new AtomicReservedKeywordNodeType();
+    #endregion
+    #region BREAK_RESERVED_KEYWORD
+    private class BreakReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public BreakReservedKeywordNodeType(): base ("BREAK_RESERVED_KEYWORD", "break") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new BreakReservedKeywordTokenElement(this);
+      }
+    }
+    private class BreakReservedKeywordTokenElement : FixedTokenElement
+    {
+      public BreakReservedKeywordTokenElement(BreakReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType BREAK_RESERVED_KEYWORD = new BreakReservedKeywordNodeType();
+    #endregion
+    #region CHECKED_RESERVED_KEYWORD
+    private class CheckedReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public CheckedReservedKeywordNodeType(): base ("CHECKED_RESERVED_KEYWORD", "checked") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new CheckedReservedKeywordTokenElement(this);
+      }
+    }
+    private class CheckedReservedKeywordTokenElement : FixedTokenElement
+    {
+      public CheckedReservedKeywordTokenElement(CheckedReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType CHECKED_RESERVED_KEYWORD = new CheckedReservedKeywordNodeType();
+    #endregion
+    #region COMPONENT_RESERVED_KEYWORD
+    private class ComponentReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public ComponentReservedKeywordNodeType(): base ("COMPONENT_RESERVED_KEYWORD", "component") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ComponentReservedKeywordTokenElement(this);
+      }
+    }
+    private class ComponentReservedKeywordTokenElement : FixedTokenElement
+    {
+      public ComponentReservedKeywordTokenElement(ComponentReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType COMPONENT_RESERVED_KEYWORD = new ComponentReservedKeywordNodeType();
+    #endregion
+    #region CONST_RESERVED_KEYWORD
+    private class ConstReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public ConstReservedKeywordNodeType(): base ("CONST_RESERVED_KEYWORD", "const") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ConstReservedKeywordTokenElement(this);
+      }
+    }
+    private class ConstReservedKeywordTokenElement : FixedTokenElement
+    {
+      public ConstReservedKeywordTokenElement(ConstReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType CONST_RESERVED_KEYWORD = new ConstReservedKeywordNodeType();
+    #endregion
+    #region CONSTRAINT_RESERVED_KEYWORD
+    private class ConstraintReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public ConstraintReservedKeywordNodeType(): base ("CONSTRAINT_RESERVED_KEYWORD", "constraint") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ConstraintReservedKeywordTokenElement(this);
+      }
+    }
+    private class ConstraintReservedKeywordTokenElement : FixedTokenElement
+    {
+      public ConstraintReservedKeywordTokenElement(ConstraintReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType CONSTRAINT_RESERVED_KEYWORD = new ConstraintReservedKeywordNodeType();
+    #endregion
+    #region CONSTRUCTOR_RESERVED_KEYWORD
+    private class ConstructorReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public ConstructorReservedKeywordNodeType(): base ("CONSTRUCTOR_RESERVED_KEYWORD", "constructor") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ConstructorReservedKeywordTokenElement(this);
+      }
+    }
+    private class ConstructorReservedKeywordTokenElement : FixedTokenElement
+    {
+      public ConstructorReservedKeywordTokenElement(ConstructorReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType CONSTRUCTOR_RESERVED_KEYWORD = new ConstructorReservedKeywordNodeType();
+    #endregion
+    #region CONTINUE_RESERVED_KEYWORD
+    private class ContinueReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public ContinueReservedKeywordNodeType(): base ("CONTINUE_RESERVED_KEYWORD", "continue") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ContinueReservedKeywordTokenElement(this);
+      }
+    }
+    private class ContinueReservedKeywordTokenElement : FixedTokenElement
+    {
+      public ContinueReservedKeywordTokenElement(ContinueReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType CONTINUE_RESERVED_KEYWORD = new ContinueReservedKeywordNodeType();
+    #endregion
+    #region EAGER_RESERVED_KEYWORD
+    private class EagerReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public EagerReservedKeywordNodeType(): base ("EAGER_RESERVED_KEYWORD", "eager") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new EagerReservedKeywordTokenElement(this);
+      }
+    }
+    private class EagerReservedKeywordTokenElement : FixedTokenElement
+    {
+      public EagerReservedKeywordTokenElement(EagerReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType EAGER_RESERVED_KEYWORD = new EagerReservedKeywordNodeType();
+    #endregion
+    #region EVENT_RESERVED_KEYWORD
+    private class EventReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public EventReservedKeywordNodeType(): base ("EVENT_RESERVED_KEYWORD", "event") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new EventReservedKeywordTokenElement(this);
+      }
+    }
+    private class EventReservedKeywordTokenElement : FixedTokenElement
+    {
+      public EventReservedKeywordTokenElement(EventReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType EVENT_RESERVED_KEYWORD = new EventReservedKeywordNodeType();
+    #endregion
+    #region EXTERNAL_RESERVED_KEYWORD
+    private class ExternalReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public ExternalReservedKeywordNodeType(): base ("EXTERNAL_RESERVED_KEYWORD", "external") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ExternalReservedKeywordTokenElement(this);
+      }
+    }
+    private class ExternalReservedKeywordTokenElement : FixedTokenElement
+    {
+      public ExternalReservedKeywordTokenElement(ExternalReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType EXTERNAL_RESERVED_KEYWORD = new ExternalReservedKeywordNodeType();
+    #endregion
+    #region FIXED_RESERVED_KEYWORD
+    private class FixedReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public FixedReservedKeywordNodeType(): base ("FIXED_RESERVED_KEYWORD", "fixed") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new FixedReservedKeywordTokenElement(this);
+      }
+    }
+    private class FixedReservedKeywordTokenElement : FixedTokenElement
+    {
+      public FixedReservedKeywordTokenElement(FixedReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType FIXED_RESERVED_KEYWORD = new FixedReservedKeywordNodeType();
+    #endregion
+    #region FUNCTOR_RESERVED_KEYWORD
+    private class FunctorReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public FunctorReservedKeywordNodeType(): base ("FUNCTOR_RESERVED_KEYWORD", "functor") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new FunctorReservedKeywordTokenElement(this);
+      }
+    }
+    private class FunctorReservedKeywordTokenElement : FixedTokenElement
+    {
+      public FunctorReservedKeywordTokenElement(FunctorReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType FUNCTOR_RESERVED_KEYWORD = new FunctorReservedKeywordNodeType();
+    #endregion
+    #region INCLUDE_RESERVED_KEYWORD
+    private class IncludeReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public IncludeReservedKeywordNodeType(): base ("INCLUDE_RESERVED_KEYWORD", "include") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new IncludeReservedKeywordTokenElement(this);
+      }
+    }
+    private class IncludeReservedKeywordTokenElement : FixedTokenElement
+    {
+      public IncludeReservedKeywordTokenElement(IncludeReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType INCLUDE_RESERVED_KEYWORD = new IncludeReservedKeywordNodeType();
+    #endregion
+    #region METHOD_RESERVED_KEYWORD
+    private class MethodReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public MethodReservedKeywordNodeType(): base ("METHOD_RESERVED_KEYWORD", "method") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new MethodReservedKeywordTokenElement(this);
+      }
+    }
+    private class MethodReservedKeywordTokenElement : FixedTokenElement
+    {
+      public MethodReservedKeywordTokenElement(MethodReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType METHOD_RESERVED_KEYWORD = new MethodReservedKeywordNodeType();
+    #endregion
+    #region MIXIN_RESERVED_KEYWORD
+    private class MixinReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public MixinReservedKeywordNodeType(): base ("MIXIN_RESERVED_KEYWORD", "mixin") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new MixinReservedKeywordTokenElement(this);
+      }
+    }
+    private class MixinReservedKeywordTokenElement : FixedTokenElement
+    {
+      public MixinReservedKeywordTokenElement(MixinReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType MIXIN_RESERVED_KEYWORD = new MixinReservedKeywordNodeType();
+    #endregion
+    #region OBJECT_RESERVED_KEYWORD
+    private class ObjectReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public ObjectReservedKeywordNodeType(): base ("OBJECT_RESERVED_KEYWORD", "object") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ObjectReservedKeywordTokenElement(this);
+      }
+    }
+    private class ObjectReservedKeywordTokenElement : FixedTokenElement
+    {
+      public ObjectReservedKeywordTokenElement(ObjectReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType OBJECT_RESERVED_KEYWORD = new ObjectReservedKeywordNodeType();
+    #endregion
+    #region PARALLEL_RESERVED_KEYWORD
+    private class ParallelReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public ParallelReservedKeywordNodeType(): base ("PARALLEL_RESERVED_KEYWORD", "parallel") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ParallelReservedKeywordTokenElement(this);
+      }
+    }
+    private class ParallelReservedKeywordTokenElement : FixedTokenElement
+    {
+      public ParallelReservedKeywordTokenElement(ParallelReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType PARALLEL_RESERVED_KEYWORD = new ParallelReservedKeywordNodeType();
+    #endregion
+    #region PROCESS_RESERVED_KEYWORD
+    private class ProcessReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public ProcessReservedKeywordNodeType(): base ("PROCESS_RESERVED_KEYWORD", "process") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ProcessReservedKeywordTokenElement(this);
+      }
+    }
+    private class ProcessReservedKeywordTokenElement : FixedTokenElement
+    {
+      public ProcessReservedKeywordTokenElement(ProcessReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType PROCESS_RESERVED_KEYWORD = new ProcessReservedKeywordNodeType();
+    #endregion
+    #region PROTECTED_RESERVED_KEYWORD
+    private class ProtectedReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public ProtectedReservedKeywordNodeType(): base ("PROTECTED_RESERVED_KEYWORD", "protected") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ProtectedReservedKeywordTokenElement(this);
+      }
+    }
+    private class ProtectedReservedKeywordTokenElement : FixedTokenElement
+    {
+      public ProtectedReservedKeywordTokenElement(ProtectedReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType PROTECTED_RESERVED_KEYWORD = new ProtectedReservedKeywordNodeType();
+    #endregion
+    #region PURE_RESERVED_KEYWORD
+    private class PureReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public PureReservedKeywordNodeType(): base ("PURE_RESERVED_KEYWORD", "pure") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new PureReservedKeywordTokenElement(this);
+      }
+    }
+    private class PureReservedKeywordTokenElement : FixedTokenElement
+    {
+      public PureReservedKeywordTokenElement(PureReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType PURE_RESERVED_KEYWORD = new PureReservedKeywordNodeType();
+    #endregion
+    #region SEALED_RESERVED_KEYWORD
+    private class SealedReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public SealedReservedKeywordNodeType(): base ("SEALED_RESERVED_KEYWORD", "sealed") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new SealedReservedKeywordTokenElement(this);
+      }
+    }
+    private class SealedReservedKeywordTokenElement : FixedTokenElement
+    {
+      public SealedReservedKeywordTokenElement(SealedReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType SEALED_RESERVED_KEYWORD = new SealedReservedKeywordNodeType();
+    #endregion
+    #region TAILCALL_RESERVED_KEYWORD
+    private class TailcallReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public TailcallReservedKeywordNodeType(): base ("TAILCALL_RESERVED_KEYWORD", "tailcall") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new TailcallReservedKeywordTokenElement(this);
+      }
+    }
+    private class TailcallReservedKeywordTokenElement : FixedTokenElement
+    {
+      public TailcallReservedKeywordTokenElement(TailcallReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType TAILCALL_RESERVED_KEYWORD = new TailcallReservedKeywordNodeType();
+    #endregion
+    #region TRAIT_RESERVED_KEYWORD
+    private class TraitReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public TraitReservedKeywordNodeType(): base ("TRAIT_RESERVED_KEYWORD", "trait") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new TraitReservedKeywordTokenElement(this);
+      }
+    }
+    private class TraitReservedKeywordTokenElement : FixedTokenElement
+    {
+      public TraitReservedKeywordTokenElement(TraitReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType TRAIT_RESERVED_KEYWORD = new TraitReservedKeywordNodeType();
+    #endregion
+    #region VIRTUAL_RESERVED_KEYWORD
+    private class VirtualReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public VirtualReservedKeywordNodeType(): base ("VIRTUAL_RESERVED_KEYWORD", "virtual") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new VirtualReservedKeywordTokenElement(this);
+      }
+    }
+    private class VirtualReservedKeywordTokenElement : FixedTokenElement
+    {
+      public VirtualReservedKeywordTokenElement(VirtualReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType VIRTUAL_RESERVED_KEYWORD = new VirtualReservedKeywordNodeType();
+    #endregion
+    #region VOLATILE_RESERVED_KEYWORD
+    private class VolatileReservedKeywordNodeType : KeywordTokenNodeType
+    {
+      public VolatileReservedKeywordNodeType(): base ("VOLATILE_RESERVED_KEYWORD", "volatile") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new VolatileReservedKeywordTokenElement(this);
+      }
+    }
+    private class VolatileReservedKeywordTokenElement : FixedTokenElement
+    {
+      public VolatileReservedKeywordTokenElement(VolatileReservedKeywordNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType VOLATILE_RESERVED_KEYWORD = new VolatileReservedKeywordNodeType();
+    #endregion
+
+    #region LQUOTE
+    private class LquoteNodeType : FixedTokenNodeType
+    {
+      public LquoteNodeType(): base ("LQUOTE", "<%") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new LquoteTokenElement(this);
+      }
+    }
+    private class LquoteTokenElement : FixedTokenElement
+    {
+      public LquoteTokenElement(LquoteNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType LQUOTE = new LquoteNodeType();
+    #endregion
+    #region LDQUOTE
+    private class LdquoteNodeType : FixedTokenNodeType
+    {
+      public LdquoteNodeType(): base ("LDQUOTE", "<%%") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new LdquoteTokenElement(this);
+      }
+    }
+    private class LdquoteTokenElement : FixedTokenElement
+    {
+      public LdquoteTokenElement(LdquoteNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType LDQUOTE = new LdquoteNodeType();
+    #endregion
+    #region RQUOTE
+    private class RquoteNodeType : FixedTokenNodeType
+    {
+      public RquoteNodeType(): base ("RQUOTE", "%>") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new RquoteTokenElement(this);
+      }
+    }
+    private class RquoteTokenElement : FixedTokenElement
+    {
+      public RquoteTokenElement(RquoteNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType RQUOTE = new RquoteNodeType();
+    #endregion
+    #region RDQUOTE
+    private class RdquoteNodeType : FixedTokenNodeType
+    {
+      public RdquoteNodeType(): base ("RDQUOTE", "%%>") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new RdquoteTokenElement(this);
+      }
+    }
+    private class RdquoteTokenElement : FixedTokenElement
+    {
+      public RdquoteTokenElement(RdquoteNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType RDQUOTE = new RdquoteNodeType();
+    #endregion
+    #region HASH
+    private class HashNodeType : FixedTokenNodeType
+    {
+      public HashNodeType(): base ("HASH", "#") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new HashTokenElement(this);
+      }
+    }
+    private class HashTokenElement : FixedTokenElement
+    {
+      public HashTokenElement(HashNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType HASH = new HashNodeType();
+    #endregion
+    #region AMP
+    private class AmpNodeType : FixedTokenNodeType
+    {
+      public AmpNodeType(): base ("AMP", "&") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new AmpTokenElement(this);
+      }
+    }
+    private class AmpTokenElement : FixedTokenElement
+    {
+      public AmpTokenElement(AmpNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType AMP = new AmpNodeType();
+    #endregion
+    #region AMP_AMP
+    private class AmpAmpNodeType : FixedTokenNodeType
+    {
+      public AmpAmpNodeType(): base ("AMP_AMP", "&&") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new AmpAmpTokenElement(this);
+      }
+    }
+    private class AmpAmpTokenElement : FixedTokenElement
+    {
+      public AmpAmpTokenElement(AmpAmpNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType AMP_AMP = new AmpAmpNodeType();
+    #endregion
+    #region BAR_BAR
+    private class BarBarNodeType : FixedTokenNodeType
+    {
+      public BarBarNodeType(): base ("BAR_BAR", "||") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new BarBarTokenElement(this);
+      }
+    }
+    private class BarBarTokenElement : FixedTokenElement
+    {
+      public BarBarTokenElement(BarBarNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType BAR_BAR = new BarBarNodeType();
+    #endregion
+    #region QUOTE
+    private class QuoteNodeType : FixedTokenNodeType
+    {
+      public QuoteNodeType(): base ("QUOTE", "'") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new QuoteTokenElement(this);
+      }
+    }
+    private class QuoteTokenElement : FixedTokenElement
+    {
+      public QuoteTokenElement(QuoteNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType QUOTE = new QuoteNodeType();
+    #endregion
+    #region LPAREN
+    private class LparenNodeType : FixedTokenNodeType
+    {
+      public LparenNodeType(): base ("LPAREN", "(") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new LparenTokenElement(this);
+      }
+    }
+    private class LparenTokenElement : FixedTokenElement
+    {
+      public LparenTokenElement(LparenNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType LPAREN = new LparenNodeType();
+    #endregion
+    #region RPAREN
+    private class RparenNodeType : FixedTokenNodeType
+    {
+      public RparenNodeType(): base ("RPAREN", ")") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new RparenTokenElement(this);
+      }
+    }
+    private class RparenTokenElement : FixedTokenElement
+    {
+      public RparenTokenElement(RparenNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType RPAREN = new RparenNodeType();
+    #endregion
+    #region STAR
+    private class StarNodeType : FixedTokenNodeType
+    {
+      public StarNodeType(): base ("STAR", "*") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new StarTokenElement(this);
+      }
+    }
+    private class StarTokenElement : FixedTokenElement
+    {
+      public StarTokenElement(StarNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType STAR = new StarNodeType();
+    #endregion
+    #region COMMA
+    private class CommaNodeType : FixedTokenNodeType
+    {
+      public CommaNodeType(): base ("COMMA", ",") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new CommaTokenElement(this);
+      }
+    }
+    private class CommaTokenElement : FixedTokenElement
+    {
+      public CommaTokenElement(CommaNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType COMMA = new CommaNodeType();
+    #endregion
+    #region RARROW
+    private class RarrowNodeType : FixedTokenNodeType
+    {
+      public RarrowNodeType(): base ("RARROW", "->") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new RarrowTokenElement(this);
+      }
+    }
+    private class RarrowTokenElement : FixedTokenElement
+    {
+      public RarrowTokenElement(RarrowNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType RARROW = new RarrowNodeType();
+    #endregion
+    #region QMARK
+    private class QmarkNodeType : FixedTokenNodeType
+    {
+      public QmarkNodeType(): base ("QMARK", "?") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new QmarkTokenElement(this);
+      }
+    }
+    private class QmarkTokenElement : FixedTokenElement
+    {
+      public QmarkTokenElement(QmarkNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType QMARK = new QmarkNodeType();
+    #endregion
+    #region QMARK_QMARK
+    private class QmarkQmarkNodeType : FixedTokenNodeType
+    {
+      public QmarkQmarkNodeType(): base ("QMARK_QMARK", "??") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new QmarkQmarkTokenElement(this);
+      }
+    }
+    private class QmarkQmarkTokenElement : FixedTokenElement
+    {
+      public QmarkQmarkTokenElement(QmarkQmarkNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType QMARK_QMARK = new QmarkQmarkNodeType();
+    #endregion
+    #region DOT_DOT
+    private class DotDotNodeType : FixedTokenNodeType
+    {
+      public DotDotNodeType(): base ("DOT_DOT", "..") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new DotDotTokenElement(this);
+      }
+    }
+    private class DotDotTokenElement : FixedTokenElement
+    {
+      public DotDotTokenElement(DotDotNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType DOT_DOT = new DotDotNodeType();
+    #endregion
+    #region DOT
+    private class DotNodeType : FixedTokenNodeType
+    {
+      public DotNodeType(): base ("DOT", ".") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new DotTokenElement(this);
+      }
+    }
+    private class DotTokenElement : FixedTokenElement
+    {
+      public DotTokenElement(DotNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType DOT = new DotNodeType();
+    #endregion
+    #region COLON
+    private class ColonNodeType : FixedTokenNodeType
+    {
+      public ColonNodeType(): base ("COLON", ":") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ColonTokenElement(this);
+      }
+    }
+    private class ColonTokenElement : FixedTokenElement
+    {
+      public ColonTokenElement(ColonNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType COLON = new ColonNodeType();
+    #endregion
+    #region COLON_COLON
+    private class ColonColonNodeType : FixedTokenNodeType
+    {
+      public ColonColonNodeType(): base ("COLON_COLON", "::") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ColonColonTokenElement(this);
+      }
+    }
+    private class ColonColonTokenElement : FixedTokenElement
+    {
+      public ColonColonTokenElement(ColonColonNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType COLON_COLON = new ColonColonNodeType();
+    #endregion
+    #region COLON_GREATER
+    private class ColonGreaterNodeType : FixedTokenNodeType
+    {
+      public ColonGreaterNodeType(): base ("COLON_GREATER", ":>") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ColonGreaterTokenElement(this);
+      }
+    }
+    private class ColonGreaterTokenElement : FixedTokenElement
+    {
+      public ColonGreaterTokenElement(ColonGreaterNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType COLON_GREATER = new ColonGreaterNodeType();
+    #endregion
+    #region RQUOTE_DOT
+    private class RquoteDotNodeType : FixedTokenNodeType
+    {
+      public RquoteDotNodeType(): base ("RQUOTE_DOT", "") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new RquoteDotTokenElement(this);
+      }
+    }
+    private class RquoteDotTokenElement : FixedTokenElement
+    {
+      public RquoteDotTokenElement(RquoteDotNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType RQUOTE_DOT = new RquoteDotNodeType();
+    #endregion
+    #region RDQUOTE_DOT
+    private class RdquoteDotNodeType : FixedTokenNodeType
+    {
+      public RdquoteDotNodeType(): base ("RDQUOTE_DOT", "") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new RdquoteDotTokenElement(this);
+      }
+    }
+    private class RdquoteDotTokenElement : FixedTokenElement
+    {
+      public RdquoteDotTokenElement(RdquoteDotNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType RDQUOTE_DOT = new RdquoteDotNodeType();
+    #endregion
+    #region GREATER_BAR_RBRACK
+    private class GreaterBarRbrackNodeType : FixedTokenNodeType
+    {
+      public GreaterBarRbrackNodeType(): base ("GREATER_BAR_RBRACK", "") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new GreaterBarRbrackTokenElement(this);
+      }
+    }
+    private class GreaterBarRbrackTokenElement : FixedTokenElement
+    {
+      public GreaterBarRbrackTokenElement(GreaterBarRbrackNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType GREATER_BAR_RBRACK = new GreaterBarRbrackNodeType();
+    #endregion
+    #region COLON_QMARK_GREATER
+    private class ColonQmarkGreaterNodeType : FixedTokenNodeType
+    {
+      public ColonQmarkGreaterNodeType(): base ("COLON_QMARK_GREATER", ":?>") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ColonQmarkGreaterTokenElement(this);
+      }
+    }
+    private class ColonQmarkGreaterTokenElement : FixedTokenElement
+    {
+      public ColonQmarkGreaterTokenElement(ColonQmarkGreaterNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType COLON_QMARK_GREATER = new ColonQmarkGreaterNodeType();
+    #endregion
+    #region COLON_QMARK
+    private class ColonQmarkNodeType : FixedTokenNodeType
+    {
+      public ColonQmarkNodeType(): base ("COLON_QMARK", ":?") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ColonQmarkTokenElement(this);
+      }
+    }
+    private class ColonQmarkTokenElement : FixedTokenElement
+    {
+      public ColonQmarkTokenElement(ColonQmarkNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType COLON_QMARK = new ColonQmarkNodeType();
+    #endregion
+    #region COLON_EQUALS
+    private class ColonEqualsNodeType : FixedTokenNodeType
+    {
+      public ColonEqualsNodeType(): base ("COLON_EQUALS", "?=") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ColonEqualsTokenElement(this);
+      }
+    }
+    private class ColonEqualsTokenElement : FixedTokenElement
+    {
+      public ColonEqualsTokenElement(ColonEqualsNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType COLON_EQUALS = new ColonEqualsNodeType();
+    #endregion
+    #region SEMICOLON_SEMICOLON
+    private class SemicolonSemicolonNodeType : FixedTokenNodeType
+    {
+      public SemicolonSemicolonNodeType(): base ("SEMICOLON_SEMICOLON", ";;") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new SemicolonSemicolonTokenElement(this);
+      }
+    }
+    private class SemicolonSemicolonTokenElement : FixedTokenElement
+    {
+      public SemicolonSemicolonTokenElement(SemicolonSemicolonNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType SEMICOLON_SEMICOLON = new SemicolonSemicolonNodeType();
+    #endregion
+    #region SEMICOLON
+    private class SemicolonNodeType : FixedTokenNodeType
+    {
+      public SemicolonNodeType(): base ("SEMICOLON", ";") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new SemicolonTokenElement(this);
+      }
+    }
+    private class SemicolonTokenElement : FixedTokenElement
+    {
+      public SemicolonTokenElement(SemicolonNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType SEMICOLON = new SemicolonNodeType();
+    #endregion
+    #region LARROW
+    private class LarrowNodeType : FixedTokenNodeType
+    {
+      public LarrowNodeType(): base ("LARROW", "<-") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new LarrowTokenElement(this);
+      }
+    }
+    private class LarrowTokenElement : FixedTokenElement
+    {
+      public LarrowTokenElement(LarrowNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType LARROW = new LarrowNodeType();
+    #endregion
+    #region EQUALS
+    private class EqualsNodeType : FixedTokenNodeType
+    {
+      public EqualsNodeType(): base ("EQUALS", "=") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new EqualsTokenElement(this);
+      }
+    }
+    private class EqualsTokenElement : FixedTokenElement
+    {
+      public EqualsTokenElement(EqualsNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType EQUALS = new EqualsNodeType();
+    #endregion
+    #region LBRACK
+    private class LbrackNodeType : FixedTokenNodeType
+    {
+      public LbrackNodeType(): base ("LBRACK", "[") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new LbrackTokenElement(this);
+      }
+    }
+    private class LbrackTokenElement : FixedTokenElement
+    {
+      public LbrackTokenElement(LbrackNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType LBRACK = new LbrackNodeType();
+    #endregion
+    #region LBRACK_BAR
+    private class LbrackBarNodeType : FixedTokenNodeType
+    {
+      public LbrackBarNodeType(): base ("LBRACK_BAR", "[|") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new LbrackBarTokenElement(this);
+      }
+    }
+    private class LbrackBarTokenElement : FixedTokenElement
+    {
+      public LbrackBarTokenElement(LbrackBarNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType LBRACK_BAR = new LbrackBarNodeType();
+    #endregion
+    #region LESS
+    private class LessNodeType : FixedTokenNodeType
+    {
+      public LessNodeType(): base ("LESS", "<") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new LessTokenElement(this);
+      }
+    }
+    private class LessTokenElement : FixedTokenElement
+    {
+      public LessTokenElement(LessNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType LESS = new LessNodeType();
+    #endregion
+    #region GREATER
+    private class GreaterNodeType : FixedTokenNodeType
+    {
+      public GreaterNodeType(): base ("GREATER", ">") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new GreaterTokenElement(this);
+      }
+    }
+    private class GreaterTokenElement : FixedTokenElement
+    {
+      public GreaterTokenElement(GreaterNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType GREATER = new GreaterNodeType();
+    #endregion
+    #region LBRACK_LESS
+    private class LbrackLessNodeType : FixedTokenNodeType
+    {
+      public LbrackLessNodeType(): base ("LBRACK_LESS", "[<") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new LbrackLessTokenElement(this);
+      }
+    }
+    private class LbrackLessTokenElement : FixedTokenElement
+    {
+      public LbrackLessTokenElement(LbrackLessNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType LBRACK_LESS = new LbrackLessNodeType();
+    #endregion
+    #region RBRACK
+    private class RbrackNodeType : FixedTokenNodeType
+    {
+      public RbrackNodeType(): base ("RBRACK", "]") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new RbrackTokenElement(this);
+      }
+    }
+    private class RbrackTokenElement : FixedTokenElement
+    {
+      public RbrackTokenElement(RbrackNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType RBRACK = new RbrackNodeType();
+    #endregion
+    #region BAR_RBRACK
+    private class BarRbrackNodeType : FixedTokenNodeType
+    {
+      public BarRbrackNodeType(): base ("BAR_RBRACK", "|]") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new BarRbrackTokenElement(this);
+      }
+    }
+    private class BarRbrackTokenElement : FixedTokenElement
+    {
+      public BarRbrackTokenElement(BarRbrackNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType BAR_RBRACK = new BarRbrackNodeType();
+    #endregion
+    #region GREATER_RBRACK
+    private class GreaterRbrackNodeType : FixedTokenNodeType
+    {
+      public GreaterRbrackNodeType(): base ("GREATER_RBRACK", ">]") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new GreaterRbrackTokenElement(this);
+      }
+    }
+    private class GreaterRbrackTokenElement : FixedTokenElement
+    {
+      public GreaterRbrackTokenElement(GreaterRbrackNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType GREATER_RBRACK = new GreaterRbrackNodeType();
+    #endregion
+    #region LBRACE
+    private class LbraceNodeType : FixedTokenNodeType
+    {
+      public LbraceNodeType(): base ("LBRACE", "{") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new LbraceTokenElement(this);
+      }
+    }
+    private class LbraceTokenElement : FixedTokenElement
+    {
+      public LbraceTokenElement(LbraceNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType LBRACE = new LbraceNodeType();
+    #endregion
+    #region BAR
+    private class BarNodeType : FixedTokenNodeType
+    {
+      public BarNodeType(): base ("BAR", "|") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new BarTokenElement(this);
+      }
+    }
+    private class BarTokenElement : FixedTokenElement
+    {
+      public BarTokenElement(BarNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType BAR = new BarNodeType();
+    #endregion
+    #region RBRACE
+    private class RbraceNodeType : FixedTokenNodeType
+    {
+      public RbraceNodeType(): base ("RBRACE", "}") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new RbraceTokenElement(this);
+      }
+    }
+    private class RbraceTokenElement : FixedTokenElement
+    {
+      public RbraceTokenElement(RbraceNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType RBRACE = new RbraceNodeType();
+    #endregion
+    #region DOLLAR
+    private class DollarNodeType : FixedTokenNodeType
+    {
+      public DollarNodeType(): base ("DOLLAR", "$") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new DollarTokenElement(this);
+      }
+    }
+    private class DollarTokenElement : FixedTokenElement
+    {
+      public DollarTokenElement(DollarNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType DOLLAR = new DollarNodeType();
+    #endregion
+    #region PERCENT_OP
+    private class PercentOpNodeType : FixedTokenNodeType
+    {
+      public PercentOpNodeType(): base ("PERCENT_OP", "%") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new PercentOpTokenElement(this);
+      }
+    }
+    private class PercentOpTokenElement : FixedTokenElement
+    {
+      public PercentOpTokenElement(PercentOpNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType PERCENT_OP = new PercentOpNodeType();
+    #endregion
+    #region DPERCENT_OP
+    private class DpercentOpNodeType : FixedTokenNodeType
+    {
+      public DpercentOpNodeType(): base ("DPERCENT_OP", "%%") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new DpercentOpTokenElement(this);
+      }
+    }
+    private class DpercentOpTokenElement : FixedTokenElement
+    {
+      public DpercentOpTokenElement(DpercentOpNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType DPERCENT_OP = new DpercentOpNodeType();
+    #endregion
+    #region MINUS
+    private class MinusNodeType : FixedTokenNodeType
+    {
+      public MinusNodeType(): base ("MINUS", "-") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new MinusTokenElement(this);
+      }
+    }
+    private class MinusTokenElement : FixedTokenElement
+    {
+      public MinusTokenElement(MinusNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType MINUS = new MinusNodeType();
+    #endregion
+    #region RESERVED
+    private class ReservedNodeType : FixedTokenNodeType
+    {
+      public ReservedNodeType(): base ("RESERVED", "") {}
+      public override LeafElementBase Create(IBuffer buffer, TreeOffset startOffset, TreeOffset endOffset)
+      {
+        return new ReservedTokenElement(this);
+      }
+    }
+    private class ReservedTokenElement : FixedTokenElement
+    {
+      public ReservedTokenElement(ReservedNodeType tokenNodeType) : base(tokenNodeType) { }
+    }
+    public static readonly TokenNodeType RESERVED = new ReservedNodeType();
+    #endregion
+
+  }
+}

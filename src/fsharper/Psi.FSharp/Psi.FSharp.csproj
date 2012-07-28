@@ -753,7 +753,9 @@
     <Compile Include="src\Tree\WhitespaceBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\Parsing\Tokens.xml" />
+    <Content Include="src\Parsing\Tokens.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Parsing\psi_lex.depends" />
