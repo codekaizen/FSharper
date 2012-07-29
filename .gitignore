@@ -32,6 +32,7 @@ obj/
 [Bb]indebug
 [Dd]ebug*/
 [Rr]elease*/
+[Dd]istrib
 Ankh.NoLoad
 
 Build/
