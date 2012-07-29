@@ -7,7 +7,7 @@
 //------------------------------------------------------------------------------
 #pragma warning disable 0168, 0219, 0108, 0414
 // ReSharper disable RedundantNameQualifier
-namespace JetBrains.ReSharper.Psi.FSharp {
+namespace JetBrains.ReSharper.Psi.FSharp.Parsing {
   public sealed class ErrorMessages {
     private ErrorMessages () {}
     private static string ourMessage_0 = null;
@@ -15,7 +15,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_0 == null)
       {
-        ourMessage_0 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_0 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_0;
     }
@@ -25,7 +25,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_1 == null)
       {
-        ourMessage_1 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_ANDAND_OP.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_AND_OP.TokenRepresentation + "\'");
+        ourMessage_1 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_ANDAND_OP.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_AND_OP.TokenRepresentation + "\'");
       }
       return ourMessage_1;
     }
@@ -35,7 +35,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_2 == null)
       {
-        ourMessage_2 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_2 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_2;
     }
@@ -45,7 +45,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_3 == null)
       {
-        ourMessage_3 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_3 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_3;
     }
@@ -55,7 +55,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_4 == null)
       {
-        ourMessage_4 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_BINARY_EXPRESSION));
+        ourMessage_4 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_BINARY_EXPRESSION));
       }
       return ourMessage_4;
     }
@@ -65,7 +65,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_5 == null)
       {
-        ourMessage_5 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_5 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_5;
     }
@@ -75,7 +75,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_6 == null)
       {
-        ourMessage_6 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_6 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_6;
     }
@@ -85,7 +85,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_7 == null)
       {
-        ourMessage_7 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_BINDING_SCHEME));
+        ourMessage_7 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_BINDING_SCHEME));
       }
       return ourMessage_7;
     }
@@ -95,7 +95,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_8 == null)
       {
-        ourMessage_8 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_8 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_8;
     }
@@ -105,7 +105,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_9 == null)
       {
-        ourMessage_9 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_BINDING_VALUE_SCHEME));
+        ourMessage_9 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_BINDING_VALUE_SCHEME));
       }
       return ourMessage_9;
     }
@@ -115,7 +115,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_10 == null)
       {
-        ourMessage_10 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_EQ_OP.TokenRepresentation + "\'");
+        ourMessage_10 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_EQ_OP.TokenRepresentation + "\'");
       }
       return ourMessage_10;
     }
@@ -125,7 +125,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_11 == null)
       {
-        ourMessage_11 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_11 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_11;
     }
@@ -135,7 +135,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_12 == null)
       {
-        ourMessage_12 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_12 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_12;
     }
@@ -145,7 +145,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_13 == null)
       {
-        ourMessage_13 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_CONSTANT_VALUE));
+        ourMessage_13 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_CONSTANT_VALUE));
       }
       return ourMessage_13;
     }
@@ -155,7 +155,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_14 == null)
       {
-        ourMessage_14 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_14 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_14;
     }
@@ -165,7 +165,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_15 == null)
       {
-        ourMessage_15 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_DEFINITION));
+        ourMessage_15 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_DEFINITION));
       }
       return ourMessage_15;
     }
@@ -175,7 +175,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_16 == null)
       {
-        ourMessage_16 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_16 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_16;
     }
@@ -185,7 +185,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_17 == null)
       {
-        ourMessage_17 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_17 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_17;
     }
@@ -195,7 +195,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_18 == null)
       {
-        ourMessage_18 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_18 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_18;
     }
@@ -205,7 +205,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_19 == null)
       {
-        ourMessage_19 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_19 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_19;
     }
@@ -215,7 +215,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_20 == null)
       {
-        ourMessage_20 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_20 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_20;
     }
@@ -225,7 +225,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_21 == null)
       {
-        ourMessage_21 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_COMMA_OP.TokenRepresentation + "\'");
+        ourMessage_21 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_COMMA_OP.TokenRepresentation + "\'");
       }
       return ourMessage_21;
     }
@@ -235,7 +235,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_22 == null)
       {
-        ourMessage_22 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_22 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_22;
     }
@@ -245,7 +245,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_23 == null)
       {
-        ourMessage_23 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_OR.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_OROR_OP.TokenRepresentation + "\'");
+        ourMessage_23 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_OR.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_OROR_OP.TokenRepresentation + "\'");
       }
       return ourMessage_23;
     }
@@ -255,7 +255,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_24 == null)
       {
-        ourMessage_24 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_24 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_24;
     }
@@ -265,7 +265,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_25 == null)
       {
-        ourMessage_25 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_ANDAND_OP.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_AND_OP.TokenRepresentation + "\'");
+        ourMessage_25 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_ANDAND_OP.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_AND_OP.TokenRepresentation + "\'");
       }
       return ourMessage_25;
     }
@@ -275,7 +275,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_26 == null)
       {
-        ourMessage_26 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_26 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_26;
     }
@@ -285,7 +285,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_27 == null)
       {
-        ourMessage_27 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_27 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_27;
     }
@@ -295,7 +295,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_28 == null)
       {
-        ourMessage_28 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_28 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_28;
     }
@@ -305,7 +305,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_29 == null)
       {
-        ourMessage_29 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_29 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_29;
     }
@@ -315,7 +315,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_30 == null)
       {
-        ourMessage_30 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_30 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_30;
     }
@@ -325,7 +325,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_31 == null)
       {
-        ourMessage_31 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_31 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_31;
     }
@@ -335,7 +335,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_32 == null)
       {
-        ourMessage_32 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_32 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_32;
     }
@@ -345,7 +345,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_33 == null)
       {
-        ourMessage_33 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_33 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_33;
     }
@@ -355,7 +355,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_34 == null)
       {
-        ourMessage_34 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_34 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_34;
     }
@@ -365,7 +365,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_35 == null)
       {
-        ourMessage_35 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_35 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_35;
     }
@@ -375,7 +375,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_36 == null)
       {
-        ourMessage_36 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_36 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_36;
     }
@@ -385,7 +385,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_37 == null)
       {
-        ourMessage_37 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_37 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_37;
     }
@@ -395,7 +395,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_38 == null)
       {
-        ourMessage_38 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_38 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_38;
     }
@@ -405,7 +405,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_39 == null)
       {
-        ourMessage_39 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_39 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_39;
     }
@@ -415,7 +415,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_40 == null)
       {
-        ourMessage_40 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_40 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_40;
     }
@@ -425,7 +425,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_41 == null)
       {
-        ourMessage_41 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_EXPRESSION));
+        ourMessage_41 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_EXPRESSION));
       }
       return ourMessage_41;
     }
@@ -435,7 +435,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_42 == null)
       {
-        ourMessage_42 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_42 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_42;
     }
@@ -445,7 +445,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_43 == null)
       {
-        ourMessage_43 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_RBRACE_OP.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_SEMICOLON_OP.TokenRepresentation + "\'");
+        ourMessage_43 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_RBRACE_OP.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_SEMICOLON_OP.TokenRepresentation + "\'");
       }
       return ourMessage_43;
     }
@@ -455,7 +455,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_44 == null)
       {
-        ourMessage_44 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_RBRACE_OP.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_SEMICOLON_OP.TokenRepresentation + "\'");
+        ourMessage_44 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_RBRACE_OP.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_SEMICOLON_OP.TokenRepresentation + "\'");
       }
       return ourMessage_44;
     }
@@ -465,7 +465,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_45 == null)
       {
-        ourMessage_45 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_FLOAT_CONSTANT));
+        ourMessage_45 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_FLOAT_CONSTANT));
       }
       return ourMessage_45;
     }
@@ -475,7 +475,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_46 == null)
       {
-        ourMessage_46 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_DOWNTO.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_TO.TokenRepresentation + "\'");
+        ourMessage_46 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_DOWNTO.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_TO.TokenRepresentation + "\'");
       }
       return ourMessage_46;
     }
@@ -485,7 +485,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_47 == null)
       {
-        ourMessage_47 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_47 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_47;
     }
@@ -495,7 +495,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_48 == null)
       {
-        ourMessage_48 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_48 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_48;
     }
@@ -505,7 +505,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_49 == null)
       {
-        ourMessage_49 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_INFIX_SYMBOL));
+        ourMessage_49 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_INFIX_SYMBOL));
       }
       return ourMessage_49;
     }
@@ -515,7 +515,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_50 == null)
       {
-        ourMessage_50 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_INT_CONSTANT));
+        ourMessage_50 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_INT_CONSTANT));
       }
       return ourMessage_50;
     }
@@ -525,7 +525,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_51 == null)
       {
-        ourMessage_51 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_51 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_51;
     }
@@ -535,7 +535,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_52 == null)
       {
-        ourMessage_52 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_52 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_52;
     }
@@ -545,7 +545,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_53 == null)
       {
-        ourMessage_53 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_PATTERN));
+        ourMessage_53 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_PATTERN));
       }
       return ourMessage_53;
     }
@@ -555,7 +555,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_54 == null)
       {
-        ourMessage_54 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_OPERATOR_EXPRESSION));
+        ourMessage_54 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_OPERATOR_EXPRESSION));
       }
       return ourMessage_54;
     }
@@ -565,7 +565,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_55 == null)
       {
-        ourMessage_55 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_OR.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_OROR_OP.TokenRepresentation + "\'");
+        ourMessage_55 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_OR.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_OROR_OP.TokenRepresentation + "\'");
       }
       return ourMessage_55;
     }
@@ -575,7 +575,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_56 == null)
       {
-        ourMessage_56 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_OVERLOADABLE_OPERATOR));
+        ourMessage_56 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_OVERLOADABLE_OPERATOR));
       }
       return ourMessage_56;
     }
@@ -585,7 +585,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_57 == null)
       {
-        ourMessage_57 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_PARAMETERIZED_TYPE_REFERENCE));
+        ourMessage_57 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_PARAMETERIZED_TYPE_REFERENCE));
       }
       return ourMessage_57;
     }
@@ -595,7 +595,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_58 == null)
       {
-        ourMessage_58 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_58 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_58;
     }
@@ -605,7 +605,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_59 == null)
       {
-        ourMessage_59 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_59 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_59;
     }
@@ -615,7 +615,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_60 == null)
       {
-        ourMessage_60 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_60 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_60;
     }
@@ -625,7 +625,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_61 == null)
       {
-        ourMessage_61 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_COMMA_OP.TokenRepresentation + "\'");
+        ourMessage_61 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_COMMA_OP.TokenRepresentation + "\'");
       }
       return ourMessage_61;
     }
@@ -635,7 +635,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_62 == null)
       {
-        ourMessage_62 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_62 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_62;
     }
@@ -645,7 +645,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_63 == null)
       {
-        ourMessage_63 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_63 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_63;
     }
@@ -655,7 +655,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_64 == null)
       {
-        ourMessage_64 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_PATTERN));
+        ourMessage_64 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_PATTERN));
       }
       return ourMessage_64;
     }
@@ -665,7 +665,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_65 == null)
       {
-        ourMessage_65 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_65 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_65;
     }
@@ -675,7 +675,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_66 == null)
       {
-        ourMessage_66 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_PREFIX_SYMBOL));
+        ourMessage_66 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_PREFIX_SYMBOL));
       }
       return ourMessage_66;
     }
@@ -685,7 +685,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_67 == null)
       {
-        ourMessage_67 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_SPECIFICATION));
+        ourMessage_67 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_SPECIFICATION));
       }
       return ourMessage_67;
     }
@@ -695,7 +695,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_68 == null)
       {
-        ourMessage_68 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_68 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_68;
     }
@@ -705,7 +705,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_69 == null)
       {
-        ourMessage_69 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_COMMA_OP.TokenRepresentation + "\'");
+        ourMessage_69 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_COMMA_OP.TokenRepresentation + "\'");
       }
       return ourMessage_69;
     }
@@ -715,7 +715,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_70 == null)
       {
-        ourMessage_70 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_70 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_70;
     }
@@ -725,7 +725,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_71 == null)
       {
-        ourMessage_71 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_COMMA_OP.TokenRepresentation + "\'");
+        ourMessage_71 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_COMMA_OP.TokenRepresentation + "\'");
       }
       return ourMessage_71;
     }
@@ -735,7 +735,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_72 == null)
       {
-        ourMessage_72 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_ASTERISK_OP.TokenRepresentation + "\'");
+        ourMessage_72 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_ASTERISK_OP.TokenRepresentation + "\'");
       }
       return ourMessage_72;
     }
@@ -745,7 +745,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_73 == null)
       {
-        ourMessage_73 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_73 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_73;
     }
@@ -755,7 +755,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_74 == null)
       {
-        ourMessage_74 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_74 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_74;
     }
@@ -765,7 +765,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_75 == null)
       {
-        ourMessage_75 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_75 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_75;
     }
@@ -775,7 +775,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_76 == null)
       {
-        ourMessage_76 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_ASTERISK_OP.TokenRepresentation + "\'");
+        ourMessage_76 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_ASTERISK_OP.TokenRepresentation + "\'");
       }
       return ourMessage_76;
     }
@@ -785,7 +785,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_77 == null)
       {
-        ourMessage_77 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_77 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_77;
     }
@@ -795,7 +795,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_78 == null)
       {
-        ourMessage_78 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_78 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_78;
     }
@@ -805,7 +805,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_79 == null)
       {
-        ourMessage_79 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_TYPE_EXPRESSION));
+        ourMessage_79 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_TYPE_EXPRESSION));
       }
       return ourMessage_79;
     }
@@ -815,7 +815,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_80 == null)
       {
-        ourMessage_80 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_80 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_80;
     }
@@ -825,7 +825,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_81 == null)
       {
-        ourMessage_81 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_TYPE_INFORMATION));
+        ourMessage_81 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_TYPE_INFORMATION));
       }
       return ourMessage_81;
     }
@@ -835,7 +835,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_82 == null)
       {
-        ourMessage_82 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_82 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_82;
     }
@@ -845,7 +845,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_83 == null)
       {
-        ourMessage_83 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_DOLLAR_OP.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_QUOT_OP.TokenRepresentation + "\'");
+        ourMessage_83 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_DOLLAR_OP.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_QUOT_OP.TokenRepresentation + "\'");
       }
       return ourMessage_83;
     }
@@ -855,7 +855,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_84 == null)
       {
-        ourMessage_84 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_84 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_84;
     }
@@ -865,7 +865,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_85 == null)
       {
-        ourMessage_85 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_TYPE_PARAMETER_LIST));
+        ourMessage_85 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_TYPE_PARAMETER_LIST));
       }
       return ourMessage_85;
     }
@@ -875,7 +875,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_86 == null)
       {
-        ourMessage_86 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_DOLLAR_OP.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_QUOT_OP.TokenRepresentation + "\'");
+        ourMessage_86 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_DOLLAR_OP.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_QUOT_OP.TokenRepresentation + "\'");
       }
       return ourMessage_86;
     }
@@ -885,7 +885,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_87 == null)
       {
-        ourMessage_87 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_TYPE_REPRESENTATION));
+        ourMessage_87 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_TYPE_REPRESENTATION));
       }
       return ourMessage_87;
     }
@@ -895,7 +895,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_88 == null)
       {
-        ourMessage_88 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_TYPE_SCHEME_EXPRESSION));
+        ourMessage_88 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_TYPE_SCHEME_EXPRESSION));
       }
       return ourMessage_88;
     }
@@ -905,7 +905,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_89 == null)
       {
-        ourMessage_89 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_RBRACE_OP.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_SEMICOLON_OP.TokenRepresentation + "\'");
+        ourMessage_89 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_RBRACE_OP.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_SEMICOLON_OP.TokenRepresentation + "\'");
       }
       return ourMessage_89;
     }
@@ -915,7 +915,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_90 == null)
       {
-        ourMessage_90 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_UNARY_EXPRESSION));
+        ourMessage_90 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_UNARY_EXPRESSION));
       }
       return ourMessage_90;
     }
@@ -925,7 +925,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_91 == null)
       {
-        ourMessage_91 = ${parserMessages}.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_MINUSDOT_OP.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.Tree.TokenType.KEYWORD_MINUS_OP.TokenRepresentation + "\'");
+        ourMessage_91 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage("\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_MINUSDOT_OP.TokenRepresentation + "\'","\'" + JetBrains.ReSharper.Psi.FSharp.Impl.TokenType.KEYWORD_MINUS_OP.TokenRepresentation + "\'");
       }
       return ourMessage_91;
     }
@@ -935,7 +935,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_92 == null)
       {
-        ourMessage_92 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_VALUE_NAME));
+        ourMessage_92 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_VALUE_NAME));
       }
       return ourMessage_92;
     }
@@ -945,7 +945,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_93 == null)
       {
-        ourMessage_93 = ${parserMessages}.GetExpectedMessage(${parserMessages}.GetString(${parserMessages}.IDS_VALUE_REFERENCE_EXPRESSION_OLD));
+        ourMessage_93 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetExpectedMessage(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetString(JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.IDS_VALUE_REFERENCE_EXPRESSION_OLD));
       }
       return ourMessage_93;
     }
@@ -955,7 +955,7 @@ namespace JetBrains.ReSharper.Psi.FSharp {
     {
       if (ourMessage_94 == null)
       {
-        ourMessage_94 = ${parserMessages}.GetUnexpectedTokenMessage();
+        ourMessage_94 = JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages.GetUnexpectedTokenMessage();
       }
       return ourMessage_94;
     }

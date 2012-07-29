@@ -5,7 +5,7 @@
   using Psi.Parsing;
   using Psi.Tree;
 
-  internal class FSharpParser : FSharpParserGenerated, IFSharpParser
+  internal class FSharpParser : /* FSharpParserGenerated, */ IFSharpParser
   {
     private ILexer<int> originalLexer;
     private LexerTokenIntern lexerTokenIntern;
@@ -18,42 +18,12 @@
 
     IFile IParser.ParseFile()
     {
-      throw new System.NotImplementedException();
+      throw new System.NotImplementedException("Not ready yet");
     }
 
     IFile IFSharpParser.ParseFile()
     {
-      throw new System.NotImplementedException();
-    }
-
-    public override TreeElement parseBindingSource()
-    {
-      throw new System.NotImplementedException();
-    }
-
-    public override TreeElement parseBindingValue(TreeElement value)
-    {
-      throw new System.NotImplementedException();
-    }
-
-    public override TreeElement parseIdentifier()
-    {
-      throw new System.NotImplementedException();
-    }
-
-    public override TreeElement parseModuleReference()
-    {
-      throw new System.NotImplementedException();
-    }
-
-    public override TreeElement parseQualifiedIdentifierName(TreeElement qualifier)
-    {
-      throw new System.NotImplementedException();
-    }
-
-    public override TreeElement parseQualifiedValueName()
-    {
-      throw new System.NotImplementedException();
+      throw new System.NotImplementedException("Not ready yet");
     }
   }
 }

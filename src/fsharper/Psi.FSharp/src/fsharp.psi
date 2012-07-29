@@ -5,23 +5,23 @@ options {
   psiStubsPackageName="JetBrains.ReSharper.Psi.FSharp.Impl";
   psiStubsBaseClass="FSharpCompositeElement";
   tokenTypePrefix="";
-  parserTargetSubdir="Gen/Psi";
-  psiInterfacesTargetSubdir="Gen/Psi/Tree";
-  psiStubsTargetSubdir="Gen/Psi/Tree/Impl";
+  parserTargetSubdir="Parser";
+  psiInterfacesTargetSubdir="Tree";
+  psiStubsTargetSubdir="Impl";
   elementTypePrefix="";
   visitorClassName="TreeNodeVisitor";
   visitorMethodSuffix="";
-  testTargetSubdir="Gen/Psi/Test/Psi";
+  testTargetSubdir="Psi/Test";
   disableReflection;
   separateHierarchies;
   "treeElementClassFQName"="JetBrains.ReSharper.Psi.ExtensionsAPI.Tree.TreeElement";
   "compositeElementClassFQName"="PsiCompositeElement";
   "psiElementVisitorClassFQName"="JetBrains.ReSharper.Psi.FSharp.Tree.TreeNodeVisitor";
-  "tokenTypeClassFQName"="JetBrains.ReSharper.Psi.FSharp.Parsing.PsiTokenType";
+  "tokenTypeClassFQName"="JetBrains.ReSharper.Psi.FSharp.Parsing.FSharpTokenType";
   "visitMethodPrefix"="Visit";
   "lexerClassName"="JetBrains.ReSharper.Psi.Parsing.ILexer";
   "psiClassesPrefix"="";
-  "psiElementClassFQName"="JetBrains.ReSharper.Psi.FSharp.Tree.IPsiTreeNode";
+  "psiElementClassFQName"="JetBrains.ReSharper.Psi.FSharp.Tree.IFSharpTreeNode";
   customImplPackage="JetBrains.ReSharper.Psi.FSharp.Tree.Impl";
   customInterfacePackage="JetBrains.ReSharper.Psi.FSharp.Tree";
   "interfaceNamePrefix"="I"; 
@@ -29,7 +29,7 @@ options {
   "customImplSuffix"="";
   "objectClassFQName"="System.Object";
   tokenBitsetThreshold=4;
-  elementTypeBaseClass="JetBrains.ReSharper.Psi.FSharp.Tree.PsiCompositeNodeType";
+  elementTypeBaseClass="JetBrains.ReSharper.Psi.FSharp.Tree.FSharpCompositeNodeType";
   parserMessagesClass="JetBrains.ReSharper.Psi.FSharp.Parsing.ParserMessages";
   generateWorkingPsi;
 }

@@ -1,7 +1,7 @@
-﻿using JetBrains.Annotations;
-
-namespace JetBrains.ReSharper.Psi.FSharp
+﻿namespace JetBrains.ReSharper.Psi.FSharp
 {
+  using Annotations;
+
   /// <summary>The F# language. Where necessary, use the Instance field.</summary>
   [LanguageDefinition(Name)]
   public class FSharpLanguage : KnownLanguage

@@ -196,6 +196,77 @@ namespace JetBrains.ReSharper.Psi.FSharp.Parsing
       public KeywordTokenNodeType(string s, string representation) : base(s, representation) { }
     }
 
+    static FSharpTokenType()
+    {
+      KEYWORDS = new NodeTypeSet
+      (
+        ABSTRACT_KEYWORD,
+        AS_KEYWORD,
+        BASE_KEYWORD,
+        CLASS_KEYWORD,
+        DEFAULT_KEYWORD,
+        DELEGATE_KEYWORD,
+        DO_KEYWORD,
+        ELSE_KEYWORD,
+        EXTERN_KEYWORD,
+        FALSE_KEYWORD,
+        FINALLY_KEYWORD,
+        FOR_KEYWORD,
+        IF_KEYWORD,
+        IN_KEYWORD,
+        INTERFACE_KEYWORD,
+        INTERNAL_KEYWORD,
+        NAMESPACE_KEYWORD,
+        NEW_KEYWORD,
+        NULL_KEYWORD,
+        OVERRIDE_KEYWORD,
+        PRIVATE_KEYWORD,
+        PUBLIC_KEYWORD,
+        RETURN_KEYWORD,
+        STATIC_KEYWORD,
+        STRUCT_KEYWORD,
+        TRUE_KEYWORD,
+        TRY_KEYWORD,
+        VOID_KEYWORD,
+        WHILE_KEYWORD,
+        YIELD_KEYWORD,
+        LET_KEYWORD
+      );
+
+      IDENTIFIER_KEYWORDS = new NodeTypeSet
+      (
+        YIELD_KEYWORD,
+        LET_KEYWORD
+      );
+
+      TYPE_KEYWORDS = new NodeTypeSet
+      (
+        VOID_KEYWORD
+      );
+
+      LITERALS = new NodeTypeSet
+      (
+        STRING_LITERAL,
+        CHARACTER_LITERAL,
+        TRUE_KEYWORD,
+        FALSE_KEYWORD,
+        NULL_KEYWORD
+      );
+
+      PREPROCESSOR = new NodeTypeSet
+      (
+        PP_BAD_CHARACTER,
+        PP_CONDITIONAL_SYMBOL,
+        PP_SKIPPED_LINE,
+        PP_DEC_DIGITS,
+        PP_FILENAME,
+        PP_DEFAULT,
+        PP_HIDDEN,
+        PP_MESSAGE,
+        PP_BAD_DIRECTIVE
+      );
+    }
+
     // parser skippable
     public static readonly TokenNodeType WHITE_SPACE = new WhitespaceNodeType();
     public static readonly TokenNodeType NEW_LINE = new NewLineNodeType();

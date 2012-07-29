@@ -1,7 +1,7 @@
-﻿using JetBrains.ProjectModel;
-
-namespace JetBrains.ReSharper.Psi.FSharp
+﻿namespace JetBrains.ReSharper.Psi.FSharp
 {
+  using ProjectModel;
+
   [ProjectFileTypeDefinition(Name, Edition = "Csharp")]
   public class FSharpProjectFileType : KnownProjectFileType
   {

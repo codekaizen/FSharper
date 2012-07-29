@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using JetBrains.ReSharper.Psi.ExtensionsAPI.Caches2;
-using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
-using JetBrains.ReSharper.Psi.FSharp.Parsing;
-using JetBrains.ReSharper.Psi.Parsing;
-using JetBrains.ReSharper.Psi.Tree;
-using JetBrains.Text;
-using JetBrains.Util;
-
-namespace JetBrains.ReSharper.Psi.FSharp.Impl
+﻿namespace JetBrains.ReSharper.Psi.FSharp.Impl
 {
+  using System.Collections.Generic;
+  using ExtensionsAPI.Caches2;
+  using ExtensionsAPI.Tree;
+  using Parsing;
+  using Psi.Parsing;
+  using Psi.Tree;
+  using Text;
+  using JetBrains.Util;
+
   [Language(typeof(FSharpLanguage))]
   public class FSharpLanguageService : LanguageService
   {

@@ -1,31 +1,31 @@
-﻿using System;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi.Impl;
-using JetBrains.ReSharper.Psi.Parsing;
-using JetBrains.Text;
-using JetBrains.UI.Icons;
-using JetBrains.Util;
-
-namespace JetBrains.ReSharper.Psi.FSharp.Impl
+﻿namespace JetBrains.ReSharper.Psi.FSharp.Impl
 {
+  using ProjectModel;
+  using Psi.Impl;
+  using Psi.Parsing;
+  using Text;
+  using UI.Icons;
+  using JetBrains.Util;
+  using CSharp.Resources;
+
   [ProjectFileType(typeof(FSharpProjectFileType))]
   public class FSharpProjectFileLanguageService : IProjectFileLanguageService
   {
-    private readonly FSharpProjectFileType myFSharpProjectFileType;
+    private readonly FSharpProjectFileType fsharpProjectFileType;
 
     public ProjectFileType LanguageType
     {
       get
       {
-        return myFSharpProjectFileType;
+        return fsharpProjectFileType;
       }
     }
 
-    public IconId Icon { get { throw new NotImplementedException(); } }
+    public IconId Icon { get { return PsiCSharpThemedIcons.Csharp.Id; } }
 
     public FSharpProjectFileLanguageService(FSharpProjectFileType fsharpProjectFileType)
     {
-      this.myFSharpProjectFileType = fsharpProjectFileType;
+      this.fsharpProjectFileType = fsharpProjectFileType;
     }
 
     public PsiLanguageType GetPsiLanguageType(IProjectFile projectFile)
@@ -39,9 +39,9 @@ namespace JetBrains.ReSharper.Psi.FSharp.Impl
     public PsiLanguageType GetPsiLanguageType(ProjectFileType languageType)
     {
       if (ProjectFileTypeEx.Is<FSharpProjectFileType>(languageType))
-        return (PsiLanguageType)FSharpLanguage.Instance;
+        return FSharpLanguage.Instance;
       else
-        return (PsiLanguageType)UnknownLanguage.Instance;
+        return UnknownLanguage.Instance;
     }
 
     public ILexerFactory GetMixedLexerFactory(ISolution solution, IBuffer buffer, IPsiSourceFile sourceFile = null)
@@ -52,13 +52,13 @@ namespace JetBrains.ReSharper.Psi.FSharp.Impl
     public PreProcessingDirective[] GetPreprocessorDefines(IProject project)
     {
       PreProcessingDirective[] processingDirectiveArray = EmptyArray<PreProcessingDirective>.Instance;
-      IFSharpProjectConfiguration projectConfiguration = project.ActiveConfiguration as IFSharpProjectConfiguration;
+      var projectConfiguration = project.ActiveConfiguration as IFSharpProjectConfiguration;
       if (projectConfiguration != null)
       {
-        string compilationConstants = projectConfiguration.ConditionalCompilationConstants;
+        var compilationConstants = projectConfiguration.ConditionalCompilationConstants;
         if (!string.IsNullOrEmpty(compilationConstants))
         {
-          string[] strArray = compilationConstants.Split(new char[3]
+          var strArray = compilationConstants.Split(new[]
           {
             ';',
             ',',
@@ -74,7 +74,8 @@ namespace JetBrains.ReSharper.Psi.FSharp.Impl
 
     public IPsiSourceFileProperties GetPsiProperties(IProjectFile projectFile, IPsiSourceFile sourceFile)
     {
-      Assertion.Assert(ProjectFileTypeEx.IsProjectFileType(projectFile.LanguageType, this.LanguageType), "projectFile.LanguageType == LanguageType");
+      Assertion.Assert(ProjectFileTypeEx.IsProjectFileType(projectFile.LanguageType, LanguageType), 
+        "projectFile.LanguageType == LanguageType");
       return new FSharpPsiProperties(projectFile, sourceFile);
     }
 

@@ -1,9 +1,9 @@
-﻿using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
-using JetBrains.ReSharper.Psi.Parsing;
-using JetBrains.Text;
-
-namespace JetBrains.ReSharper.Psi.FSharp.Parsing
+﻿namespace JetBrains.ReSharper.Psi.FSharp.Parsing
 {
+  using ExtensionsAPI.Tree;
+  using Psi.Parsing;
+  using Text;
+
   public class FSharpLexer : FSharpLexerGenerated
   {
     public FSharpLexer(IBuffer buffer) : base(buffer)
