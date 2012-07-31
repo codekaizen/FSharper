@@ -1,16 +1,13 @@
-﻿using System;
-using System.Net;
-using System.Text;
-using System.Windows;
-using JetBrains.ReSharper.Psi.FSharp.Parsing;
-using JetBrains.ReSharper.Psi.Parsing;
-using JetBrains.Text;
-
-namespace JetBrains.ReSharper.FSharp.LexerVisualization
+﻿namespace JetBrains.ReSharper.FSharp.LexerVisualization
 {
-  /// <summary>
-  /// Interaction logic for MainWindow.xaml
-  /// </summary>
+  using System;
+  using System.Net;
+  using System.Text;
+  using System.Windows;
+  using Psi.FSharp.Parsing;
+  using Psi.Parsing;
+  using Text;
+
   public partial class MainWindow : Window
   {
     public static readonly DependencyProperty InputTextProperty = 

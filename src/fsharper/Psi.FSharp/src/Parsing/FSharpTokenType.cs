@@ -150,7 +150,8 @@ namespace JetBrains.ReSharper.Psi.FSharp.Parsing
     {
       private readonly string representation;
 
-      public FixedTokenNodeType(string s, string representation = null) : base(s, representation)
+      public FixedTokenNodeType(string s, string representation = null)
+        : base(s, representation)
       {
         this.representation = representation;
       }
@@ -199,39 +200,109 @@ namespace JetBrains.ReSharper.Psi.FSharp.Parsing
     static FSharpTokenType()
     {
       KEYWORDS = new NodeTypeSet
-      (
+        (
         ABSTRACT_KEYWORD,
+        AND_KEYWORD,
         AS_KEYWORD,
+        ASSERT_KEYWORD,
         BASE_KEYWORD,
+        BEGIN_KEYWORD,
         CLASS_KEYWORD,
         DEFAULT_KEYWORD,
         DELEGATE_KEYWORD,
         DO_KEYWORD,
+        DONE_KEYWORD,
+        DOWNCAST_KEYWORD,
+        DOWNTO_KEYWORD,
+        ELIF_KEYWORD,
         ELSE_KEYWORD,
+        END_KEYWORD,
+        EXCEPTION_KEYWORD,
         EXTERN_KEYWORD,
         FALSE_KEYWORD,
         FINALLY_KEYWORD,
         FOR_KEYWORD,
+        FUN_KEYWORD,
+        FUNCTION_KEYWORD,
+        GLOBAL_KEYWORD,
         IF_KEYWORD,
         IN_KEYWORD,
+        INHERIT_KEYWORD,
+        INLINE_KEYWORD,
         INTERFACE_KEYWORD,
         INTERNAL_KEYWORD,
+        LAZY_KEYWORD,
+        LET_KEYWORD,
+        MATCH_KEYWORD,
+        MEMBER_KEYWORD,
+        MODULE_KEYWORD,
+        MUTABLE_KEYWORD,
         NAMESPACE_KEYWORD,
         NEW_KEYWORD,
+        NOT_KEYWORD,
         NULL_KEYWORD,
+        OF_KEYWORD,
+        OPEN_KEYWORD,
+        OR_KEYWORD,
         OVERRIDE_KEYWORD,
         PRIVATE_KEYWORD,
         PUBLIC_KEYWORD,
+        REC_KEYWORD,
         RETURN_KEYWORD,
         STATIC_KEYWORD,
         STRUCT_KEYWORD,
+        THEN_KEYWORD,
+        TO_KEYWORD,
         TRUE_KEYWORD,
         TRY_KEYWORD,
+        TYPE_KEYWORD,
+        UPCAST_KEYWORD,
+        USE_KEYWORD,
+        VAL_KEYWORD,
         VOID_KEYWORD,
+        WHEN_KEYWORD,
         WHILE_KEYWORD,
+        WITH_KEYWORD,
         YIELD_KEYWORD,
-        LET_KEYWORD
-      );
+
+        // ML keywords
+        ASR_ML_KEYWORD,
+        LAND_ML_KEYWORD,
+        LOR_ML_KEYWORD,
+        LSL_ML_KEYWORD,
+        LSR_ML_KEYWORD,
+        LXOR_ML_KEYWORD,
+        MOD_ML_KEYWORD,
+        SIG_ML_KEYWORD,
+
+        // reserved
+        ATOMIC_RESERVED_KEYWORD,
+        BREAK_RESERVED_KEYWORD,
+        CHECKED_RESERVED_KEYWORD,
+        COMPONENT_RESERVED_KEYWORD,
+        CONST_RESERVED_KEYWORD,
+        CONSTRAINT_RESERVED_KEYWORD,
+        CONSTRUCTOR_RESERVED_KEYWORD,
+        CONTINUE_RESERVED_KEYWORD,
+        EAGER_RESERVED_KEYWORD,
+        EVENT_RESERVED_KEYWORD,
+        EXTERNAL_RESERVED_KEYWORD,
+        FIXED_RESERVED_KEYWORD,
+        FUNCTOR_RESERVED_KEYWORD,
+        INCLUDE_RESERVED_KEYWORD,
+        METHOD_RESERVED_KEYWORD,
+        MIXIN_RESERVED_KEYWORD,
+        OBJECT_RESERVED_KEYWORD,
+        PARALLEL_RESERVED_KEYWORD,
+        PROCESS_RESERVED_KEYWORD,
+        PROTECTED_RESERVED_KEYWORD,
+        PURE_RESERVED_KEYWORD,
+        SEALED_RESERVED_KEYWORD,
+        TAILCALL_RESERVED_KEYWORD,
+        TRAIT_RESERVED_KEYWORD,
+        VIRTUAL_RESERVED_KEYWORD,
+        VOLATILE_RESERVED_KEYWORD
+        );
 
       IDENTIFIER_KEYWORDS = new NodeTypeSet
       (
@@ -268,12 +339,13 @@ namespace JetBrains.ReSharper.Psi.FSharp.Parsing
     }
 
     // parser skippable
-    public static readonly TokenNodeType WHITE_SPACE = new WhitespaceNodeType();
+    
     public static readonly TokenNodeType NEW_LINE = new NewLineNodeType();
     public static readonly TokenNodeType END_OF_LINE_COMMENT = new EndOfLineCommentNodeType();
     public static readonly TokenNodeType C_STYLE_COMMENT = new CommentNodeType("C_STYLE_COMMENT");
 
     // parser non-skippable
+    public static readonly TokenNodeType WHITE_SPACE = new WhitespaceNodeType();
     public static readonly TokenNodeType IDENTIFIER = new IdentifierNodeType();
 
     public static readonly TokenNodeType INT_LITERAL = new GenericTokenNodeType("INT_LITERAL", "int literal");
@@ -301,6 +373,7 @@ namespace JetBrains.ReSharper.Psi.FSharp.Parsing
 
     public static readonly NodeTypeSet KEYWORDS;
     public static readonly NodeTypeSet TYPE_KEYWORDS;
+    // todo: figure out what these are actually for
     public static readonly NodeTypeSet IDENTIFIER_KEYWORDS;
     public static readonly NodeTypeSet LITERALS;
     public static readonly NodeTypeSet PREPROCESSOR;

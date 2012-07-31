@@ -467,6 +467,7 @@
     <Compile Include="src\Impl\FSharpLanguageService.cs" />
     <Compile Include="src\Impl\FSharpProjectFileLanguageService.cs" />
     <Compile Include="src\Parsing\FSharpLexer.cs" />
+    <Compile Include="src\Parsing\FSharpLexer.gen_lex.cs" />
     <Compile Include="src\Parsing\FSharpLexerGenerated.cs" />
     <Compile Include="src\Parsing\FSharpLexerState.cs" />
     <Compile Include="src\Parsing\FSharpParser.cs" />
@@ -512,9 +513,8 @@
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(ReSharperSdkTargets)\Plugin.Targets" />
-  <Import Project="$(ReSharperSdkTargets)\Plugin.NoReferences.Targets" />
   <Import Project="$(ReSharperSdkTools)\parserGen\ParserGen.Targets" />
-  <Import Project="$(ReSharperSdkTools)\MSBuild\JetBrains.Build.Common.Targets" />
+  <Import Project="$(ReSharperSdkTools)\MSBuild\JetBrains.Build.Common.Targets"/>
   <Import Project="$(ReSharperSdkTools)\CsLex\CsLex.Targets" />
   <Target Name="BeforeBuild">
     <MakeDir Directories="$(MSBuildProjectDirectory)\obj" />
