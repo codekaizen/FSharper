@@ -30,6 +30,7 @@ ipch/
 obj/
 [Bb]in
 [Bb]indebug
+[Bb]intests
 [Dd]ebug*/
 [Rr]elease*/
 [Dd]istrib
